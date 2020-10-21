@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {ReactComponent as ReactLogo} from './veracruzLogo.svg';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import { ButtonContainer } from './Button';
+import { IconContainer } from './IconContainer';
 
 export default class Default extends Component {
   render() {
@@ -14,13 +14,13 @@ export default class Default extends Component {
         <Link to='/'>
           <ReactLogo style={{width: '6rem'}}></ReactLogo>
         </Link>
-        <div className="row col-lg-6 pt-2">
-        <ButtonContainer>
+        <div className="row col-lg-6 pt-3">
+        <IconContainer>
         <i className="fab fa-instagram fa-lg pr-2" onClick={()=> window.open("https://www.instagram.com/useveracruz/", "_blank")} />
-        </ButtonContainer>
-        <ButtonContainer>
+        </IconContainer>
+        <IconContainer>
         <i className="fab fa-tiktok fa-lg" onClick={()=> window.open("https://www.tiktok.com/@useveracruz", "_blank")} />
-        </ButtonContainer>
+        </IconContainer>
         </div>
         </div>
         

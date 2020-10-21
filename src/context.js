@@ -7,6 +7,7 @@ const ProductContext = React.createContext();
 class ProductProvider extends Component {
   state = {
       products: [],
+      // genders: [],
       detailProducts: detailProducts,
       cart: [],
       modalOpen: false,
@@ -26,11 +27,12 @@ class ProductProvider extends Component {
     });
       this.setState(() => {
         return { products: tempProducts };
+        // console.log("State products: ", storeProducts[0].color[0])
       });
     };
-
-  getItem = id => {
-    const product = this.state.products.find(item => item.id === id);
+    
+    getItem = id => {
+      const product = this.state.products.find(item => item.id === id);
     return product;
   };
 
@@ -45,12 +47,15 @@ class ProductProvider extends Component {
     let tempProducts = [...this.state.products];
     const index = tempProducts.indexOf(this.getItem(id));
     const product = tempProducts[index];
+    // const genderItem = product.gender;
+    // console.log(genderItem)
+    // genderItem.map((item, key) => { (item === genderItem[0]) ? item = genderItem[0] : item = "asafe"; console.log(item)})
     product.inCart = true;
     product.count = 1;
     const price = product.price;
     product.total = price;
     this.setState(() => {
-      return { products: tempProducts, cart: [...this.state.cart,product] }
+      return { products: tempProducts, cart: [...this.state.cart,product]}
     }, () => { this.addTotal();});
   }
 

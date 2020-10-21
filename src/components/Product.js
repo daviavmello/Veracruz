@@ -20,20 +20,18 @@ export default class Product extends Component {
             <Link to='/details'>
               <img src={img} alt="Vestuário" className="card-img-top" />
             </Link>
-            <button className="cart-btn text-terciary font-weight-bold text-uppercase" disabled={inCart ? true : false} onClick={() => {
+            {/* <button className="cart-btn text-terciary font-weight-bold text-uppercase" disabled={inCart ? true : false} onClick={() => {
                 value.addToCart(id);
                 value.openModal(id);
               }}
-              >
+              > */}
               {inCart ? (
-              <p className="text-uppercase mb-0" disabled> 
+              <p className="cart-btn text-terciary font-weight-bold text-uppercase mb-0" disabled> 
               {" "}
               No Carrinho <Emoji symbol="🔥🤘🏼"/>
               </p>
-              ) : (
-              <i className="fas fa-cart-plus" />
-              )}
-            </button>
+              ) : " "}
+            {/* </button> */}
           </div>)}
           
           </ProductConsumer>
@@ -58,7 +56,9 @@ Product.propTypes = {
     title: PropTypes.string,
     img: PropTypes.string,
     price: PropTypes.number,
-    inCart: PropTypes.bool
+    inCart: PropTypes.bool,
+    color: PropTypes.arrayOf(PropTypes.string),
+    gender: PropTypes.arrayOf(PropTypes.string)
   }).isRequired
 }
 const ProductWrapper = styled.div`

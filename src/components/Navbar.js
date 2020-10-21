@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ReactComponent as ReactLogo } from "./veracruzLogo.svg";
 import { Link } from "react-router-dom";
-import { ButtonContainer } from "./Button";
+import { IconContainer } from "./IconContainer";
 import styled from "styled-components";
 
 export default class Navbar extends Component {
@@ -23,11 +23,11 @@ export default class Navbar extends Component {
           </li>
 
           <Link to="/cart">
-            <ButtonContainer>
+            <IconContainer>
               <span>
                 <i className="fas fa-cart-plus" />
               </span>
-            </ButtonContainer>
+            </IconContainer>
           </Link>
         </ul>
       </NavWrapper>

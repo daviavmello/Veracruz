@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { ProductConsumer } from '../context';
 import { Link } from 'react-router-dom';
 import { ButtonContainerSecondary } from './ButtonSecondary';
-import styled from 'styled-components'
+import { ButtonDetails } from './ButtonDetails';
+import { ColorButton } from './ColorButton';
+import PropTypes from 'prop-types';
 
 export default class Details extends Component {
   render() {
     return (
       <ProductConsumer>
         {value => {
-        const {id, img, price, description, color, info, title, inCart} = value.detailProducts;
+        const {id, img, price, description, color, gender, info, title, inCart} = value.detailProducts;
         return (
           <div className="container pb-5">
             <div className="row">
@@ -27,8 +29,11 @@ export default class Details extends Component {
                 <h5 className="text-terciary">R$ {price.toFixed(2)}</h5>
                 <h6 className="text-muted font-italic">{description}</h6>
                 <h6>{color.map((item, key) => ( color[key] === "Branca" ?
-                  <span>{" "} <ColorButton className="button-white"></ColorButton></span> : <span>{" "} <ColorButton className="button-black"></ColorButton></span>))}</h6>
+                  <span key={key}>{" "} <ColorButton className="button-white"></ColorButton></span> : <span key={key}>{" "} <ColorButton className="button-black"></ColorButton></span>))}</h6>
                 
+                <h6>{gender.map((item, key) => (
+                  <span>{" "}<ButtonDetails key={key}>{item}</ButtonDetails></span>
+                ))}</h6>
                 <p className="mt-4 mb-0 lh-3 paragraph"> {info}</p>
                 <div>
                   <Link to="/">
@@ -53,28 +58,9 @@ export default class Details extends Component {
   }
 }
 
-const ColorButton = styled.button.attrs(props => ({
-  className: props.className,
-}))`
-
-width: 2.5rem;
-height: 2.5rem;
-border: 0.19rem solid var(--secondaryColor);
-box-shadow: 0 0 0 0.15rem var(--primaryColor);
-background: var(--primaryColor);
-border-radius: 3rem;
-cursor: pointer;
-align-content: center;
-transition: all 0.5s ease-in-out;
-&.button-white {
-  background: #fff;
-  margin-right: 0.7rem;
-} 
-// &:hover {
-//   background: var(--terciaryColor);
-//   color: var(--secondaryColor);
+// Details.propTypes = {
+//   product: PropTypes.shape({
+//     color: PropTypes.arrayOf(PropTypes.string),
+//     gender: PropTypes.arrayOf(PropTypes.string)
+//   })
 // }
-&:focus {
-  outline: none;
-}
-`

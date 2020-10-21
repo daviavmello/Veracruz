@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ButtonContainer = styled.button`
+export const IconContainer = styled.button`
   text-transform: capitalize;
   background: transparent;
   border: none;
@@ -9,5 +9,8 @@ export const ButtonContainer = styled.button`
   transition: all 0.5s ease-in-out;
   &:hover {
     color: var(--terciaryColor);
+  }
+  &:focus {
+    outline: none;
   }
 `
