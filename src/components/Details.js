@@ -11,12 +11,13 @@ export default class Details extends Component {
     return (
       <ProductConsumer>
         {value => {
-        const {id, img, price, description, color, gender, info, title, inCart} = value.detailProducts;
+        const {id, img, price, description, color, gender, genders, info, title, inCart} = value.detailProducts;
+
+        let colorDisabled, genderDisabled = true;
         return (
           <div className="container pb-5">
             <div className="row">
               <div className="col-10 mx-auto text-center text-slanted my-5">
-                {/* <h1>{title}</h1> */}
 
               </div>
             </div>
@@ -29,10 +30,13 @@ export default class Details extends Component {
                 <h5 className="text-terciary">R$ {price.toFixed(2)}</h5>
                 <h6 className="text-muted font-italic">{description}</h6>
                 <h6>{color.map((item, key) => ( color[key] === "Branca" ?
-                  <span key={key}>{" "} <ColorButton className="button-white"></ColorButton></span> : <span key={key}>{" "} <ColorButton className="button-black"></ColorButton></span>))}</h6>
+                
+                  <ColorButton key={key} onClick={() => { value.colorHandle(key, item) }} className="button-white" />  : 
+                  <ColorButton key={key} onClick={() => { value.colorHandle(key, item) }}  className="button-black" />))}</h6>
+
                 
                 <h6>{gender.map((item, key) => (
-                  <span>{" "}<ButtonDetails key={key}>{item}</ButtonDetails></span>
+                  <ButtonDetails key={key} onClick={() => { value.tester(key, item) }}>{item}</ButtonDetails>
                 ))}</h6>
                 <p className="mt-4 mb-0 lh-3 paragraph"> {info}</p>
                 <div>
@@ -40,10 +44,9 @@ export default class Details extends Component {
                     <ButtonContainerSecondary>&#8592; voltar</ButtonContainerSecondary>
                   </Link>
                   <ButtonContainerSecondary cart
-                    disabled={inCart ? true : false}
+                    disabled={inCart ? true : false} 
                     onClick={() => {
                       value.addToCart(id);
-                      value.openModal(id);
                     }}> 
                     {inCart ? "adicionado ao carrinho!" : "adicionar ao carrinho +"}
                     </ButtonContainerSecondary>
@@ -58,9 +61,11 @@ export default class Details extends Component {
   }
 }
 
-// Details.propTypes = {
-//   product: PropTypes.shape({
-//     color: PropTypes.arrayOf(PropTypes.string),
-//     gender: PropTypes.arrayOf(PropTypes.string)
-//   })
-// }
+Details.propTypes = {
+  product: PropTypes.shape({
+    color: PropTypes.arrayOf(PropTypes.string),
+    gender: PropTypes.arrayOf(PropTypes.string)
+  }),
+
+  genders: PropTypes.arrayOf(PropTypes.string)
+}

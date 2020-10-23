@@ -6,7 +6,7 @@ export const storeProducts = [
 		price: 59.70,
 		description: "Camiseta de grife, 100% algodão feita com silk-screen",
 		color: ["Branca", "Preta"],
-		gender: ["Feminino", "Masculino"],
+		gender: ["Masculino", "Feminino"],
 		size: ["P", "M", "G"],
 		info:
 			"• Mensagem que você estará levando ao usar essa peça: Uma vez éramos pecadores, hoje devido ao sacrifício de Jesus fomos feitos santos.",
@@ -22,7 +22,7 @@ export const storeProducts = [
 		price: 139.70,
 		description: "Moletom com capuz e bolso cangurú de grife, 100% algodão feito com silk-screen",
 		color: ["Branca"],
-		gender: [],
+		gender: ["Masculino"],
 		size: ["P", "M", "G"],
 		info: 
 			"• Mensagem que você estará levando ao usar essa peça: Jesus é tudo aquilo que precisamos, Ele é amor, Ele é alegria, Ele é o caminho, Ele é a verdade, Ele é a vida Ele é a paz, ELE É!",
@@ -38,7 +38,7 @@ export const storeProducts = [
 		price: 59.70,
 		description: "Camiseta de grife, 100% algodão feita com silk-screen",
 		color: ["Branca", "Preta"],
-		gender: ["Feminino", "Masculino"],
+		gender: ["Masculino", "Feminino"],
 		size: ["P", "M", "G"],
 		info:
 			"• Mensagem que você estará levando ao usar essa peça: João 3:16 - “Porque Deus tanto amou o mundo que deu o seu Filho Unigênito, para que todo o que nele crer não pereça, mas tenha a vida eterna.” João‬ ‭3:16‬ ‭NVI.‬‬",

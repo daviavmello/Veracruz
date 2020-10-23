@@ -1,8 +1,8 @@
 import React from 'react'
 
 export default function CartItem({ item, value }) {
-  const {id, title, img, price, gender, total, count} = item;
-  const {increment, decrement, removeItem} = value; 
+  const {id, title, img, price, total, count} = item;
+  const {increment, decrement, removeItem, genders, colors} = value; 
   
   return (
     <div className="row my-3 text-capitalize text-center">
@@ -10,7 +10,7 @@ export default function CartItem({ item, value }) {
             <img src={img} style={{ width: "5rem", height: "5rem" }} className="img-fluid" alt="product" />
         </div>
         <div className="col-10 mx-auto col-lg-2">
-            <span className="d-lg-none">Produto: </span> {title} {gender} {console.log(gender)}
+            <span className="d-lg-none">Produto: </span> {title} {genders} {colors}
         </div>
         <div className="col-10 mx-auto col-lg-2">
             <span className="d-lg-none">Preço: </span> {price.toFixed(2)}

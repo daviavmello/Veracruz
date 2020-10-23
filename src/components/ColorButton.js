@@ -11,8 +11,10 @@ export const ColorButton = styled.button.attrs(props => ({
   background: var(--primaryColor);
   border-radius: 3rem;
   cursor: pointer;
-  // align-content: center;
   transition: all 0.5s ease-in-out;
+  &:active {
+    background: var(--primaryColor);
+  }
   &.button-white {
     background: #fff;
     margin-right: 0.7rem;
