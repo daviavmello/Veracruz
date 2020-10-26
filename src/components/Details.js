@@ -13,7 +13,6 @@ export default class Details extends Component {
         {value => {
         const {id, img, price, description, color, gender, genders, info, title, inCart} = value.detailProducts;
 
-        let colorDisabled, genderDisabled = true;
         return (
           <div className="container pb-5">
             <div className="row">
@@ -31,12 +30,12 @@ export default class Details extends Component {
                 <h6 className="text-muted font-italic">{description}</h6>
                 <h6>{color.map((item, key) => ( color[key] === "Branca" ?
                 
-                  <ColorButton key={key} onClick={() => { value.colorHandle(key, item) }} className="button-white" />  : 
-                  <ColorButton key={key} onClick={() => { value.colorHandle(key, item) }}  className="button-black" />))}</h6>
+                  <ColorButton key={key} onClick={() => { value.colorHandle(item) }} className="button-white" />  : 
+                  <ColorButton key={key} onClick={() => { value.colorHandle(item) }}  className="button-black" />))}</h6>
 
                 
                 <h6>{gender.map((item, key) => (
-                  <ButtonDetails key={key} onClick={() => { value.tester(key, item) }}>{item}</ButtonDetails>
+                  <ButtonDetails key={key} onClick={() => { value.genderHandle(item) }}>{item}</ButtonDetails>
                 ))}</h6>
                 <p className="mt-4 mb-0 lh-3 paragraph"> {info}</p>
                 <div>
@@ -47,8 +46,8 @@ export default class Details extends Component {
                     disabled={inCart ? true : false} 
                     onClick={() => {
                       value.addToCart(id);
-                    }}> 
-                    {inCart ? "adicionado ao carrinho!" : "adicionar ao carrinho +"}
+                    }}> adicionar ao carrinho
+                    {/* {inCart ? "adicionado ao carrinho!" : "adicionar ao carrinho +"} */}
                     </ButtonContainerSecondary>
                 </div>
               </div>

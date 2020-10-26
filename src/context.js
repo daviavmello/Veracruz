@@ -13,7 +13,6 @@ class ProductProvider extends Component {
     cart: [],
     modalOpen: false,
     modalChecker: false,
-    active: false,
     modalProduct: detailProducts,
     cartTotal: 0,
   };
@@ -45,11 +44,6 @@ class ProductProvider extends Component {
     });
   };
 
-  toggleClass = () => {
-    const currentState = this.state.colors;
-    this.setState({ active: !currentState });
-  };
-
   addToCart = (id) => {
     let tempProducts = [...this.state.products];
     const index = tempProducts.indexOf(this.getItem(id));
@@ -57,7 +51,7 @@ class ProductProvider extends Component {
     const colorSelection = this.state.colors;
     const genderSelection = this.state.genders;
 
-    console.log(colorSelection);
+    console.log("Color Selection", colorSelection);
 
     if (
       typeof colorSelection === "string" &&
@@ -71,6 +65,7 @@ class ProductProvider extends Component {
         () => {
           return {
             products: tempProducts,
+            // genders: [...this.state.cart, genderSelection],
             cart: [...this.state.cart, product],
           };
         },
@@ -205,37 +200,21 @@ class ProductProvider extends Component {
     });
   };
 
-  colorHandle = (key, item) => {
-    console.log("Item: ", { item }, "Key: ", { key });
-    if (key === 0) {
-      console.log("Vivinhos");
-      const gender = "Branca";
-      this.setState(() => {
-        return { colors: gender };
+  colorHandle = (item) => {
+    // console.log("Item: ", { item }, "Key: ", { key });
+    this.setState(() => {
+      const color = item;
+      console.log(color);
+        return { colors: color };
       });
-    } else {
-      this.setState(() => {
-        return { colors: "Vintage Black" };
-      });
-      console.log("Ila");
-    }
   };
 
-  tester = (key, item) => {
-    // console.log("Item: ", { item }, "Key: ", { key });
-    if (key === 0) {
-      console.log("Sasafe");
-      const gender = "Masculino";
+  genderHandle = (item) => {
       this.setState(() => {
+      const gender = item;
+      console.log(gender);
         return { genders: gender };
       });
-    } else {
-      this.setState(() => {
-      const gender = "Feminino";
-        return { genders: gender };
-      });
-      console.log("pintainha");
-    }
   };
 
   render() {
@@ -251,7 +230,7 @@ class ProductProvider extends Component {
           decrement: this.decrement,
           removeItem: this.removeItem,
           clearCart: this.clearCart,
-          tester: this.tester,
+          genderHandle: this.genderHandle,
           colorHandle: this.colorHandle,
           openModalChecker: this.openModalChecker,
           toggleClass: this.toggleClass,
