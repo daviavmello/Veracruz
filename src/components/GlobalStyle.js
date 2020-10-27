@@ -17,12 +17,15 @@ const GlobalStyle = createGlobalStyle`
     background: var(--color-base);
     color: var(--color-base00);
   }
-  html, body {
+  html, body, #root, #root > div {
     min-height: 100%;
     display: flex;
     flex-direction: column;
     flex: 1;
     justify-content: flex-start;
+  }
+  main {
+    flex: 1;
   }
 `
 

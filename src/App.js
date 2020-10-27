@@ -13,13 +13,15 @@ const App = () => (
 	<>
 		<GlobalStyle />
 		<Navbar />
-		<Switch>
-			<Route exact path='/' component={ProductList} />
-			<Route exact path='/products' component={ProductList} />
-			<Route exact path='/cart' component={Cart} />
-			<Route path='/products/:id' component={DetailView} />
-			<Route component={NotFoundPage} />
-		</Switch>
+		<main>
+			<Switch>
+				<Route exact path='/' component={ProductList} />
+				<Route exact path='/products' component={ProductList} />
+				<Route exact path='/cart' component={Cart} />
+				<Route path='/products/:id' component={DetailView} />
+				<Route component={NotFoundPage} />
+			</Switch>
+		</main>
 		<Footer />
 	</>
 )
