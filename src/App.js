@@ -1,32 +1,29 @@
-import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar';
-import Details from './components/Details';
-import ProductList from './components/ProductList';
-import Cart from './components/Cart';
-import Default from './components/Default';
-import Modal from './components/Modal';
-import ModalChecker from './components/ModalChecker';
-import Footer from './components/Footer';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-function App() {
-  return (
-    <React.Fragment>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={ProductList} />
-        <Route path="/details" component={Details} />
-        <Route path="/cart" component={Cart} />
-        <Route component={Default} />
-      </Switch>
-      <Modal />
-      <ModalChecker />
-      <Footer />
+import GlobalStyle from 'components/GlobalStyle'
+import Navbar from 'components/Navbar'
+import DetailView from 'components/DetailView'
+import ProductList from 'components/ProductList'
+import Cart from 'components/Cart'
+import NotFoundPage from 'components/NotFoundPage'
+import Footer from 'components/Footer'
 
-    </React.Fragment>
-  );
-}
+const App = () => (
+	<>
+		<GlobalStyle />
+		<Navbar />
+		<main>
+			<Switch>
+				<Route exact path='/' component={ProductList} />
+				<Route exact path='/products' component={ProductList} />
+				<Route exact path='/cart' component={Cart} />
+				<Route path='/products/:id' component={DetailView} />
+				<Route component={NotFoundPage} />
+			</Switch>
+		</main>
+		<Footer />
+	</>
+)
 
-export default App;
+export default App
