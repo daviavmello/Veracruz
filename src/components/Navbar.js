@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Container, Stack, Text, Divider, Button, Flex, Badge, Drawer, Menu, Heading, Set } from 'bumbag'
-import { ShoppingCart, Trash2, ExternalLink, DollarSign } from 'react-feather'
+import { ShoppingCart, Trash2, ExternalLink, DollarSign, X, XCircle } from 'react-feather'
 
 import { products } from 'content'
 import useCart from 'store/cart'
@@ -40,8 +40,8 @@ const Item = ({ id, count, variants }) => {
 											<Text fontSize='100'>{dictionary.sizes[size] || size}</Text>
 										</td>
 									)}
-									<td style={{ textAlignLast: 'right' }}>
-										<Text marginX='0.5rem' fontSize='100' fontWeight='semibold'>{count}</Text>
+									<td style={{ textAlign: 'right' }}>
+										<Text marginX='0.25rem' fontSize='100' fontWeight='semibold'>{count}</Text>
 									</td>
 								</tr>
 							))}
@@ -69,6 +69,7 @@ const getTotalPrice = cartList => cartList.reduce((acc, curr) => {
 }, 0)
 
 const FloatingCart = () => {
+	const drawer = Drawer.useState({ animated : true })
   const cart = useCart(s => s.cart)
   const reset = useCart(s => s.reset)
 	const totalCount = getTotalCount(cart)
@@ -78,63 +79,82 @@ const FloatingCart = () => {
 
   return (
 		<Flex>
-			<Drawer.State animated>
-				<Drawer.Disclosure>
-					<Button size='small' color='white' backgroundColor='primary' border='none'>
-						{!!totalCount && <Badge isAttached>{totalCount}</Badge>}
-						<ShoppingCart />
-					</Button>
-				</Drawer.Disclosure>
-				<Drawer placement='right' fade slide>
-					<Flex flexDirection='column' height='100%' justifyContent='space-between' overflowY='auto'>
-						<Flex flexDirection='column'>
-							<Box position='sticky' top='0rem' zIndex='1'>
-								<Heading padding='2rem 1rem 1.5rem' use='h4' background='white' margin='0'>
-									Meu carrinho ({totalCount})
+			<Drawer.Disclosure {...drawer}>
+				<Button size='small' color='white' backgroundColor='primary' border='none'>
+					{!!totalCount && <Badge isAttached>{totalCount}</Badge>}
+					<ShoppingCart />
+				</Button>
+			</Drawer.Disclosure>
+			<Drawer placement='right' fade slide width='400px' maxWidth='100%' {...drawer}>
+				<Flex flexDirection='column' height='100%' justifyContent='space-between' overflowY='auto'>
+					<Flex flexDirection='column'>
+						<Box position='sticky' top='0rem' zIndex='1'>
+							<Flex justifyContent='space-between' alignItems='center' padding='1rem 0 0.5rem 1rem'>
+								<Heading use='h4' background='white' margin='0'>
+									Resumo do carrinho ({totalCount})
 								</Heading>
-								<Menu background='white'>
-									<Menu.Group>
-										<Menu.Item use={Link} to='/cart' margin='0'>
-											<Flex alignItems='center'>
-												<ExternalLink size={16} display='block' />
-												&nbsp; Conferir o carrinho
-											</Flex>
-										</Menu.Item>
-									</Menu.Group>
-								</Menu>
-							</Box>
-							<Box flex='1' padding='2rem 0'>
-								{cartList.map(({ id, ...rest }) => (
-									<Item key={id} id={id} {...rest} />
-								))}
-							</Box>
-						</Flex>
-						{!!totalCount && (
-							<Menu position='sticky' bottom='0' background='white'>
+								<button style={{ padding: '1rem' }} onClick={drawer.hide}>
+									<X size={20} display='block' />
+								</button>
+							</Flex>
+							<Divider margin='0' />
+							<Menu background='white'>
 								<Menu.Group>
-									<Menu.Divider margin='0' />
-									<Menu.Item disabled>
-										<Flex alignItems='center' justifyContent='space-between'>
-											<Flex alignItems='center'>
-												<DollarSign size={16} display='block' />
-												&nbsp; Subtotal: &nbsp;
-											</Flex>
-											<Text>R$ {totalPrice}</Text>
-										</Flex>
-									</Menu.Item>
-									<Menu.Divider margin='0' />
-									<Menu.Item color='danger' onClick={reset}>
+									<Menu.Item use={Link} to='/cart' margin='0' color='success'>
 										<Flex alignItems='center'>
-											<Trash2 size={16} display='block' />
-											&nbsp; Limpar carrinho
+											<ExternalLink size={16} display='block' />
+											&nbsp; Conferir o carrinho
 										</Flex>
 									</Menu.Item>
 								</Menu.Group>
 							</Menu>
-						)}
+							<Divider margin='0' />
+						</Box>
+						<Box flex='1' padding='2rem 0'>
+							{cartList.map(({ id, ...rest }) => (
+								<Item key={id} id={id} {...rest} />
+							))}
+						</Box>
 					</Flex>
-				</Drawer>
-			</Drawer.State>
+					{!!totalCount && (
+						<Menu position='sticky' bottom='0' background='white'>
+							<Menu.Group>
+								<Menu.Divider margin='0' />
+								<Menu.Item disabled>
+									<Flex alignItems='center' justifyContent='space-between'>
+										<Flex alignItems='center'>
+											<DollarSign size={16} display='block' />
+											&nbsp; Subtotal: &nbsp;
+										</Flex>
+										<Text>R$ {totalPrice}</Text>
+									</Flex>
+								</Menu.Item>
+								<Menu.Divider margin='0' />
+								<Menu.Item color='danger' onClick={reset}>
+									<Flex alignItems='center'>
+										<Trash2 size={16} display='block' />
+										&nbsp; Limpar carrinho
+									</Flex>
+								</Menu.Item>
+								<Menu.Divider margin='0' />
+								<Menu.Item use={Link} to='/cart' margin='0' color='success'>
+									<Flex alignItems='center'>
+										<ExternalLink size={16} display='block' />
+										&nbsp; Conferir o carrinho
+									</Flex>
+								</Menu.Item>
+								<Menu.Divider margin='0' />
+								<Menu.Item onClick={drawer.hide}>
+									<Flex alignItems='center'>
+										<X size={16} display='block' />
+										&nbsp; Fechar
+									</Flex>
+								</Menu.Item>
+							</Menu.Group>
+						</Menu>
+					)}
+				</Flex>
+			</Drawer>
 		</Flex>
 	)
 }
