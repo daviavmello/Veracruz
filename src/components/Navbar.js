@@ -1,45 +1,44 @@
-import React, { Component } from "react";
-import { ReactComponent as ReactLogo } from "./veracruzLogo.svg";
-import { Link } from "react-router-dom";
-import { IconContainer } from "./IconContainer";
-import styled from "styled-components";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Box, Container, Stack, Text, DropdownMenu, Button, Flex, Badge, Drawer } from 'bumbag'
+import { ShoppingCart } from 'react-feather'
 
-export default class Navbar extends Component {
-  render() {
-    return (
-      <NavWrapper className="navbar px-sm-5">
-        <Link to="/">
-          <ReactLogo
-            className="navbar-brand p-2"
-            style={{ width: "7rem" }}
-          ></ReactLogo>
-        </Link>
+import useCart from 'store/cart'
+import Logo from 'components/Logo.js'
 
-        <ul className="nav navbar-right align-items-center">
-          <li className="nav-item">
-            <Link to="/#shop" className="nav-link">
-              Shop
-            </Link>
-          </li>
-
-          <Link to="/cart">
-            <IconContainer>
-              <span>
-                <i className="fas fa-cart-plus" />
-              </span>
-            </IconContainer>
-          </Link>
-        </ul>
-      </NavWrapper>
-    );
-  }
+const FloatingCart = () => {
+  const cart = useCart(s => s.cart)
+  const totalCount = Object.values(cart).reduce((acc, curr) => acc + curr?.count || 0, 0)
+  return (
+		<Flex>
+			<Drawer.State>
+				<Drawer.Disclosure>
+					<Button size='small' color='white' background='black' border='none'>
+						{!!totalCount && <Badge isAttached>{totalCount}</Badge>}
+						<ShoppingCart />
+					</Button>
+				</Drawer.Disclosure>
+				<Drawer placement='right'>
+					<Link to='/cart'>Ir para o carrinho</Link>
+				</Drawer>
+			</Drawer.State>
+		</Flex>
+	)
 }
 
-const NavWrapper = styled.nav`
-  background: var(--primaryColor);
-  .nav-link {
-    font-size: 1rem;
-    text-transform: uppercase;
-    color: var(--secondaryColor) !important;
-  }
-`;
+const Navbar = () => (
+  <div style={{position:'sticky', top:0}}>
+    <Box as='header' background='black' color='white'>
+      <Container as='nav' padding='1rem'>
+        <Flex alignItems='center' justifyContent='space-between'>
+          <Link to='/'>
+            <Logo style={{ height: '2rem', width: 'auto' }} />
+          </Link>
+          <FloatingCart />
+        </Flex>
+      </Container>
+    </Box>
+  </div>
+)
+
+export default Navbar
