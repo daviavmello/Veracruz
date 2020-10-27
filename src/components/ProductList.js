@@ -1,6 +1,20 @@
 import React, { useState } from 'react'
 import { Minus, Plus } from 'react-feather'
-import { Card, Box, Image, Stack, Heading, Container, FieldStack, OptionButtons, Button, Columns, Group } from 'bumbag'
+import {
+	Card,
+	Box,
+	Image,
+	Stack,
+	Heading,
+	Container,
+	FieldStack,
+	OptionButtons,
+	Button,
+	Columns,
+	Group,
+  Flex,
+  Paragraph,
+} from 'bumbag'
 
 import { products } from 'content'
 import dictionary from 'utils/dictionary'
@@ -64,19 +78,24 @@ const Product = ({ id, title, images, colors, genders, sizes, price, onAddToCart
 								options={sizes.map(value => ({ value, label: dictionary.sizes[value] || value }))}
 							/>
 						)}
-						<Group>
-							<Button onClick={handleSubtractFromCart} disabled={!count}>
-								<Minus />
-							</Button>
-
-              <Button disabled>
-                {count}
-              </Button>
-
-							<Button onClick={handleAddToCart}>
-								<Plus />
-							</Button>
-						</Group>
+						<Stack orientation='horizontal'>
+							<Group>
+								<Button size='small' onClick={handleSubtractFromCart} disabled={!count}>
+									<Minus size={16} />
+								</Button>
+								<Button size='small' disabled>
+									{count}
+								</Button>
+								<Button size='small' onClick={handleAddToCart}>
+									<Plus size={16} />
+								</Button>
+							</Group>
+							<Flex alignItems='center' justifyContent='flex-end'>
+                <Paragraph fontWeight="bold" margin='0'>
+                  R$ {price.toFixed(2)}
+                </Paragraph>
+              </Flex>
+						</Stack>
 					</FieldStack>
 				</form>
 			</Box>
