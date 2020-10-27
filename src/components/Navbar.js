@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Container, Stack, Text, Divider, Button, Flex, Badge, Drawer, Menu, Heading, Set } from 'bumbag'
-import { ShoppingCart, Trash2, ExternalLink, DollarSign, X, XCircle } from 'react-feather'
+import { ShoppingCart, Trash2, ExternalLink, DollarSign, X } from 'react-feather'
 
 import { products } from 'content'
 import useCart from 'store/cart'

@@ -20,13 +20,13 @@
       ],
       "info": "Uma vez éramos pecadores, hoje devido ao sacrifício de Jesus fomos feitos santos.",
       "images": {
-        "default": "pfs-white.png",
+        "default": "pfs-white.jpg",
         "color": {
           "white": [
-            "pfs-white.png"
+            "pfs-white.jpg"
           ],
           "black": [
-            "pfs-black.png"
+            "pfs-black.jpg"
           ]
         }
       }
@@ -49,15 +49,15 @@
       ],
       "info": "Jesus é tudo aquilo que precisamos, Ele é amor, Ele é alegria, Ele é o caminho, Ele é a verdade, Ele é a vida Ele é a paz, ELE É!",
       "images": {
-        "default": "hoodie-white.png",
+        "default": "hoodie-white.jpg",
         "color": {
           "white": [
-            "hoodie-white.png",
-            "hoodie-white_back.png"
+            "hoodie-white.jpg",
+            "hoodie-white_back.jpg"
           ],
           "black": [
-            "hoodie-black.png",
-            "hoodie-black_back.png"
+            "hoodie-black.jpg",
+            "hoodie-black_back.jpg"
           ]
         }
       }
@@ -82,13 +82,13 @@
       ],
       "info": "João 3:16 - “Porque Deus tanto amou o mundo que deu o seu Filho Unigênito, para que todo o que nele crer não pereça, mas tenha a vida eterna.” João‬ ‭3:16‬ ‭NVI.‬‬",
       "images": {
-        "default": "verse-white.png",
+        "default": "verse-white.jpg",
         "color": {
           "white": [
-            "verse-white.png"
+            "verse-white.jpg"
           ],
           "black": [
-            "verse-black.png"
+            "verse-black.jpg"
           ]
         }
       }
@@ -113,10 +113,10 @@
       ],
       "info": "marketing tshirt",
       "images": {
-        "default": "tshirt-white_back.png",
+        "default": "tshirt-white_back.jpg",
         "color": {
-          "white": ["tshirt-white_back.png"],
-          "black": ["tshirt-white_back.png"]
+          "white": ["tshirt-white_back.jpg"],
+          "black": ["tshirt-white_back.jpg"]
         }
       }
     }
