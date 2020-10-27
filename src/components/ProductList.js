@@ -40,9 +40,15 @@ const Product = ({ id, title, images, colors, genders, sizes, price, onAddToCart
 
 	return (
 		<Card as='article' marginBottom='4rem' overflow='hidden' padding='0'>
-			{images?.default && <Image src={`/img/${images.default}`} />}
+			{images?.default && (
+				<div style={{ position: 'relative' }}>
+					<Image src={`/img/${images.default}`} />
+				</div>
+			)}
 			<Box padding='1rem'>
-				<Heading use='h3'>{title}</Heading>
+				<Heading use='h5' padding='1rem 0 0.75rem'>
+					{title}
+				</Heading>
 				<form>
 					<FieldStack>
 						{colors?.length > 1 && (
@@ -91,10 +97,10 @@ const Product = ({ id, title, images, colors, genders, sizes, price, onAddToCart
 								</Button>
 							</Group>
 							<Flex alignItems='center' justifyContent='flex-end'>
-                <Paragraph fontWeight='semibold' margin='0'>
-                  R$ {price.toFixed(2)}
-                </Paragraph>
-              </Flex>
+								<Paragraph fontWeight='semibold' margin='0'>
+									R$ {price.toFixed(2)}
+								</Paragraph>
+							</Flex>
 						</Stack>
 					</FieldStack>
 				</form>

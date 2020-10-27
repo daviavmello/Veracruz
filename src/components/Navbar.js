@@ -86,7 +86,7 @@ const FloatingCart = () => {
 		<Flex>
 			<Drawer.Disclosure {...drawer}>
 				<Button size='small' color='white' backgroundColor='primary' border='none'>
-					{!!totalCount && <Badge isAttached>{totalCount}</Badge>}
+					{!!totalCount && <Badge isAttached color='primary' backgroundColor='white'>{totalCount}</Badge>}
 					<ShoppingCart />
 				</Button>
 			</Drawer.Disclosure>
