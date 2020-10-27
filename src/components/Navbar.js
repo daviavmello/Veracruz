@@ -1,14 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Container, Stack, Text, DropdownMenu, Button, Flex, Badge, Drawer } from 'bumbag'
-import { ShoppingCart } from 'react-feather'
+import { Box, Container, Stack, Text, DropdownMenu, Button, Flex, Badge, Drawer, Menu, Heading } from 'bumbag'
+import { ShoppingCart, Trash2, ExternalLink } from 'react-feather'
 
 import useCart from 'store/cart'
 import Logo from 'components/Logo.js'
 
 const FloatingCart = () => {
   const cart = useCart(s => s.cart)
-  const totalCount = Object.values(cart).reduce((acc, curr) => acc + curr?.count || 0, 0)
+  const reset = useCart(s => s.reset)
+	const totalCount = Object.values(cart).reduce((acc, curr) => acc + curr?.count || 0, 0)
+	const cartList = Object.values(cart).reduce((acc, { id, ...rest }) => {
+		const item = acc.find(x => x.id === id)
+		if (!item) return [...acc, { id, count: rest.count, variants: [rest] }]
+		return [
+			...acc.filter(x => x.id !== id),
+			{ id, count: item.count + rest.count, variants: [...item.variants, rest] }
+		]
+	}, [])
+
   return (
 		<Flex>
 			<Drawer.State animated>
@@ -19,7 +29,42 @@ const FloatingCart = () => {
 					</Button>
 				</Drawer.Disclosure>
 				<Drawer placement='right' fade slide>
-					<Link to='/cart'>Ir para o carrinho</Link>
+					<Flex flexDirection='column' height='100%' justifyContent='space-between' overflowY='auto'>
+						<Flex flexDirection='column'>
+							<Box position='sticky' top='0rem'>
+								<Heading padding='2rem 1rem 1.5rem' use='h4' background='white' margin='0'>
+									Meu carrinho ({totalCount})
+								</Heading>
+								<Menu>
+									<Menu.Group>
+										<Menu.Item use={Link} to='/cart' margin='0'>
+											<Flex alignItems='center'>
+												<ExternalLink size={16} display='block' />
+												&nbsp; Conferir o carrinho
+											</Flex>
+										</Menu.Item>
+									</Menu.Group>
+								</Menu>
+							</Box>
+							<Box flex='1' padding='2rem 0'>
+								{}
+								<pre>{JSON.stringify(cartList, null, 2)}</pre>
+							</Box>
+						</Flex>
+						{!!totalCount && (
+							<Menu position='sticky' bottom='0' background='white'>
+								<Menu.Group>
+									<Menu.Divider margin='0' />
+									<Menu.Item color='danger' onClick={reset}>
+										<Flex alignItems='center'>
+											<Trash2 size={16} display='block' />
+											&nbsp; Limpar carrinho
+										</Flex>
+									</Menu.Item>
+								</Menu.Group>
+							</Menu>
+						)}
+					</Flex>
 				</Drawer>
 			</Drawer.State>
 		</Flex>
