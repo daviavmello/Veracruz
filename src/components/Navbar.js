@@ -72,10 +72,15 @@ const FloatingCart = () => {
 	const drawer = Drawer.useState({ animated : true })
   const cart = useCart(s => s.cart)
   const reset = useCart(s => s.reset)
+	
 	const totalCount = getTotalCount(cart)
 	const cartList = getCartList(cart)
-
 	const totalPrice = getTotalPrice(cartList).toFixed(2)
+
+	const onReset = () => {
+		reset()
+		drawer.hide()
+	}
 
   return (
 		<Flex>
@@ -85,7 +90,7 @@ const FloatingCart = () => {
 					<ShoppingCart />
 				</Button>
 			</Drawer.Disclosure>
-			<Drawer placement='right' fade slide width='400px' maxWidth='100%' {...drawer}>
+			<Drawer placement='right' slide width='560px' maxWidth='100%' {...drawer}>
 				<Flex flexDirection='column' height='100%' justifyContent='space-between' overflowY='auto'>
 					<Flex flexDirection='column'>
 						<Box position='sticky' top='0rem' zIndex='1'>
@@ -93,14 +98,14 @@ const FloatingCart = () => {
 								<Heading use='h4' background='white' margin='0'>
 									Resumo do carrinho ({totalCount})
 								</Heading>
-								<button style={{ padding: '1rem' }} onClick={drawer.hide}>
+								<Button background='none' border='none' padding='1rem' onClick={drawer.hide}>
 									<X size={20} display='block' />
-								</button>
+								</Button>
 							</Flex>
 							<Divider margin='0' />
 							<Menu background='white'>
 								<Menu.Group>
-									<Menu.Item use={Link} to='/cart' margin='0' color='success'>
+									<Menu.Item use={Link} to='/cart' onClick={drawer.hide} margin='0' color='success'>
 										<Flex alignItems='center'>
 											<ExternalLink size={16} display='block' />
 											&nbsp; Conferir o carrinho
@@ -130,14 +135,14 @@ const FloatingCart = () => {
 									</Flex>
 								</Menu.Item>
 								<Menu.Divider margin='0' />
-								<Menu.Item color='danger' onClick={reset}>
+								<Menu.Item color='danger' onClick={onReset}>
 									<Flex alignItems='center'>
 										<Trash2 size={16} display='block' />
 										&nbsp; Limpar carrinho
 									</Flex>
 								</Menu.Item>
 								<Menu.Divider margin='0' />
-								<Menu.Item use={Link} to='/cart' margin='0' color='success'>
+								<Menu.Item use={Link} to='/cart' onClick={drawer.hide} margin='0' color='success'>
 									<Flex alignItems='center'>
 										<ExternalLink size={16} display='block' />
 										&nbsp; Conferir o carrinho
