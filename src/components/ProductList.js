@@ -91,7 +91,7 @@ const Product = ({ id, title, images, colors, genders, sizes, price, onAddToCart
 								</Button>
 							</Group>
 							<Flex alignItems='center' justifyContent='flex-end'>
-                <Paragraph fontWeight="bold" margin='0'>
+                <Paragraph fontWeight='semibold' margin='0'>
                   R$ {price.toFixed(2)}
                 </Paragraph>
               </Flex>
