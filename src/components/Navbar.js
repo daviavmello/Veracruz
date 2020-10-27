@@ -11,14 +11,14 @@ const FloatingCart = () => {
   const totalCount = Object.values(cart).reduce((acc, curr) => acc + curr?.count || 0, 0)
   return (
 		<Flex>
-			<Drawer.State>
+			<Drawer.State animated>
 				<Drawer.Disclosure>
 					<Button size='small' color='white' background='black' border='none'>
 						{!!totalCount && <Badge isAttached>{totalCount}</Badge>}
 						<ShoppingCart />
 					</Button>
 				</Drawer.Disclosure>
-				<Drawer placement='right'>
+				<Drawer placement='right' fade slide>
 					<Link to='/cart'>Ir para o carrinho</Link>
 				</Drawer>
 			</Drawer.State>
