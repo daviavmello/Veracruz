@@ -1,7 +1,9 @@
-import { createGlobalStyle } from 'styled-components'
+import React from 'react'
+import { Global, css } from '@emotion/core'
+
 import wipe from 'wipe.css'
 
-const GlobalStyle = createGlobalStyle`
+const styles = css`
   ${wipe}
   html {
     text-rendering: optimizeLegibility;
@@ -28,5 +30,7 @@ const GlobalStyle = createGlobalStyle`
     flex: 1;
   }
 `
+
+const GlobalStyle = () => <Global styles={styles} />
 
 export default GlobalStyle
