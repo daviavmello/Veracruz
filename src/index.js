@@ -5,8 +5,14 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider as BumbagProvider } from 'bumbag'
 import * as serviceWorker from './serviceWorker'
 
+const theme = {
+	palette: {
+		primary: '#121212',
+	},
+}
+
 const Root = () => (
-	<BumbagProvider>
+	<BumbagProvider theme={theme}>
 		<Router>
 			<App />
 		</Router>
