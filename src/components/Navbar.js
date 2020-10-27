@@ -5,19 +5,13 @@ import { ShoppingCart, Trash2, ExternalLink } from 'react-feather'
 
 import useCart from 'store/cart'
 import Logo from 'components/Logo.js'
+import { getTotalCount, getCartList } from 'utils/cart'
 
 const FloatingCart = () => {
   const cart = useCart(s => s.cart)
   const reset = useCart(s => s.reset)
-	const totalCount = Object.values(cart).reduce((acc, curr) => acc + curr?.count || 0, 0)
-	const cartList = Object.values(cart).reduce((acc, { id, ...rest }) => {
-		const item = acc.find(x => x.id === id)
-		if (!item) return [...acc, { id, count: rest.count, variants: [rest] }]
-		return [
-			...acc.filter(x => x.id !== id),
-			{ id, count: item.count + rest.count, variants: [...item.variants, rest] }
-		]
-	}, [])
+	const totalCount = getTotalCount(cart)
+	const cartList = getCartList(cart)
 
   return (
 		<Flex>

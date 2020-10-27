@@ -18,7 +18,7 @@ import {
 
 import { products } from 'content'
 import dictionary from 'utils/dictionary'
-import getProductCartKey from 'utils/getProductCartKey'
+import { getItemCount, addToCart, subtractFromCart } from 'utils/cart'
 import useCart from 'store/cart'
 
 const Product = ({ id, title, images, colors, genders, sizes, price, onAddToCart, onSubtractFromCart, getCount }) => {
@@ -107,31 +107,9 @@ const ProductList = () => {
   const cart = useCart(x => x.cart)
   const setCart = useCart(x => x.setCart)
 
-  const getCount = data => {
-    const key = getProductCartKey(data)
-    return cart?.[key]?.count || 0
-  }
-  
-  const onAddToCart = data => {
-    const key = getProductCartKey(data)
-    const hasItemOnCart = key in cart
-    if (!hasItemOnCart) return setCart({...cart, [key]: {...data, count: 1} })
-    const previousCount = cart[key].count
-    return setCart({ ...cart, [key]: { ...data, count: previousCount + 1 } })
-  }
-  
-  const onSubtractFromCart = data => {
-    const key = getProductCartKey(data)
-    const hasItemOnCart = key in cart
-    if (!hasItemOnCart) return
-    const previousCount = cart[key].count
-    const count = previousCount - 1
-
-    const { [key]: item, ...newCart } = cart
-
-    if (count === 0) return setCart(newCart)
-    return setCart({ ...cart, [key]: { ...data, count } })
-  }
+  const getCount = getItemCount(cart)
+  const onAddToCart = addToCart(cart, setCart)
+  const onSubtractFromCart = subtractFromCart(cart, setCart)
 
   return (
 		<Container padding='4rem 1rem'>
