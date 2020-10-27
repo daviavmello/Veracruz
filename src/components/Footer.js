@@ -1,13 +1,12 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Instagram, Film } from 'react-feather'
 
-import { Box, Flex, Container, Paragraph, Stack, Set } from 'bumbag'
+import { Box, Container, Paragraph, Stack, Set } from 'bumbag'
 import Logo from 'components/Logo.js'
 
 const Footer = () => (
-	<Box backgroundColor='black' color='white'>
+	<Box backgroundColor='primary' color='white'>
 		<Container padding='2rem 1rem'>
 			<Stack>
 				<Stack orientation='horizontal' alignItems='flex-start'>
