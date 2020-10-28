@@ -1,0 +1,97 @@
+{
+  "products": [
+    {
+      "id": "pfs",
+      "title": "Pecadores Feitos Santos",
+      "price": 59.7,
+      "description": "Camiseta de grife, 100% algodão feita com silk-screen",
+      "colors": [
+        "WHITE",
+        "BLACK"
+      ],
+      "genders": [
+        "MAN",
+        "WOMAN"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "info": "Uma vez éramos pecadores, hoje devido ao sacrifício de Jesus fomos feitos santos.",
+      "images": {
+        "default": "pfs-white.jpg",
+        "color": {
+          "white": [
+            "pfs-white.jpg"
+          ],
+          "black": [
+            "pfs-black.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "id": "hoodie",
+      "title": "Moletom",
+      "price": 139.7,
+      "description": "Moletom com capuz e bolso cangurú de grife, 100% algodão feito com silk-screen",
+      "colors": [
+        "WHITE"
+      ],
+      "genders": [
+        "MAN"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "info": "Jesus é tudo aquilo que precisamos, Ele é amor, Ele é alegria, Ele é o caminho, Ele é a verdade, Ele é a vida Ele é a paz, ELE É!",
+      "images": {
+        "default": "hoodie-white.jpg",
+        "color": {
+          "white": [
+            "hoodie-white.jpg",
+            "hoodie-white_back.jpg"
+          ],
+          "black": [
+            "hoodie-black.jpg",
+            "hoodie-black_back.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "id": "verse",
+      "title": "Versículo",
+      "price": 59.7,
+      "description": "Camiseta de grife, 100% algodão feita com silk-screen",
+      "colors": [
+        "WHITE",
+        "BLACK"
+      ],
+      "genders": [
+        "MAN",
+        "WOMAN"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "info": "João 3:16 - “Porque Deus tanto amou o mundo que deu o seu Filho Unigênito, para que todo o que nele crer não pereça, mas tenha a vida eterna.” João‬ ‭3:16‬ ‭NVI.‬‬",
+      "images": {
+        "default": "verse-white.jpg",
+        "color": {
+          "white": [
+            "verse-white.jpg"
+          ],
+          "black": [
+            "verse-black.jpg"
+          ]
+        }
+      }
+    }
+  ]
+}
