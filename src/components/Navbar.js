@@ -103,7 +103,7 @@ const FloatingCart = () => {
 								</Button>
 							</Flex>
 							<Divider margin='0' />
-							<Menu background='white'>
+							{/* <Menu background='white'>
 								<Menu.Group>
 									<Menu.Item use={Link} to='/cart' onClick={drawer.hide} margin='0' color='success'>
 										<Flex alignItems='center'>
@@ -113,7 +113,7 @@ const FloatingCart = () => {
 									</Menu.Item>
 								</Menu.Group>
 							</Menu>
-							<Divider margin='0' />
+							<Divider margin='0' /> */}
 						</Box>
 						<Box flex='1' padding='2rem 0'>
 							{cartList.map(({ id, ...rest }) => (

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Minus, Plus } from 'react-feather'
+import dictionary from 'utils/dictionary'
 import {
 	Card,
 	Box,
@@ -12,15 +13,20 @@ import {
 	Button,
 	Columns,
 	Group,
-  Flex,
-  Paragraph,
+	Flex,
+	Paragraph,
 } from 'bumbag'
 
 import useCart from 'store/cart'
 
-const Item = ({ id, color, gender, size, count }) => {
-	return(
-		<div>{id}</div>
+const Item = ({ title, color, gender, size, count }) => {
+	return (
+		<Card>
+			<Paragraph fontWeight='bold'>{title} </Paragraph>
+			<Paragraph>
+			{dictionary.colors[color] || color} {' / '} {dictionary.genders[gender] || gender} {' / '} {dictionary.sizes[size] || size}
+			</Paragraph>
+		</Card>
 	)
 }
 
@@ -31,12 +37,16 @@ const Cart = () => {
 
 	return (
 		<Container padding='4rem 1rem'>
-			<Stack spacing='major-4'>
-				<Heading use='h1'>Carrinho</Heading>
-				{flattenedCart.map(({ key, ...rest }) => (
-					<Item key={key} {...rest} />
-				))}
-			</Stack>
+			<Columns>
+				<Columns.Column spread={3}>
+					<Stack spacing='major-4'>
+						<Heading use='h1'>Carrinho</Heading>
+						{flattenedCart.map(({ key, ...rest }) => (
+							<Item key={key} {...rest} />
+						))}
+					</Stack>
+				</Columns.Column>
+			</Columns>
 		</Container>
 	)
 }

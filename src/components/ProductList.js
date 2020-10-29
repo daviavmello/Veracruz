@@ -28,15 +28,15 @@ const Product = ({ id, title, images, colors, genders, sizes, price, onAddToCart
 
 	const handleAddToCart = e => {
 		e.preventDefault()
-		onAddToCart({ id, color, gender, size })
+		onAddToCart({ id, title, color, gender, size })
   }
   
   const handleSubtractFromCart = e => {
 		e.preventDefault()
-		onSubtractFromCart({ id, color, gender, size })
+		onSubtractFromCart({ id, title, color, gender, size })
   }
   
-  const count = getCount({ id, color, gender, size })
+  const count = getCount({ id, title, color, gender, size })
 
 	return (
 		<Card as='article' marginBottom='4rem' overflow='hidden' padding='0'>
