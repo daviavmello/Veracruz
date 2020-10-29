@@ -18,12 +18,13 @@ import {
 } from 'bumbag'
 
 import useCart from 'store/cart'
+import { getTotalPrice } from './Navbar'
 
 const Item = ({ title, color, gender, size, count }) => {
 	return (
 		<Card>
-			<Paragraph fontWeight='bold'>{title} </Paragraph>
-			<Paragraph>
+			<Paragraph fontWeight='semibold'>{title} {getTotalPrice}</Paragraph>
+			<Paragraph fontSize='100' color='grey'>
 			{dictionary.colors[color] || color} {' / '} {dictionary.genders[gender] || gender} {' / '} {dictionary.sizes[size] || size}
 			</Paragraph>
 		</Card>

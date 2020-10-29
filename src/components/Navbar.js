@@ -63,7 +63,7 @@ const Item = ({ id, count, variants }) => {
 	)
 }
 
-const getTotalPrice = cartList => cartList.reduce((acc, curr) => {
+export const getTotalPrice = cartList => cartList.reduce((acc, curr) => {
 	const productPrice = products.find(({ id }) => id === curr.id).price
 	return acc + (productPrice * curr.count)
 }, 0)

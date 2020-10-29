@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Instagram, Film } from 'react-feather'
 
 import { Box, Container, Paragraph, Stack, Set } from 'bumbag'
+import LogoSecondary from 'components/LogoSecondary.js'
 import Logo from 'components/Logo.js'
 
 const Footer = () => (
@@ -12,7 +13,8 @@ const Footer = () => (
 				<Stack orientation='horizontal' alignItems='flex-start'>
 					<Box>
 						<Link to='/'>
-							<Logo style={{ height: '4rem', width: 'auto' }} />
+							<Logo style={{ height: '3rem', width: 'auto', marginRight: '1rem' }} />
+							<LogoSecondary style={{ height: '3.7rem', width: 'auto', fill: '#fff', alignItems: 'center' }} />
 						</Link>
 					</Box>
 					<Set orientation='horizontal'>
