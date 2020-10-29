@@ -1,13 +1,15 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
+import { Container, Heading } from 'bumbag'
+
 
 const NotFoundPage = () => {
   const { pathname } = useLocation()
   return (
-    <>
-      <h1>Ahh não! Página não encontrada.</h1>
-      <h2>A página que você requisitou <span>{pathname}</span> não foi encontrada.</h2>
-    </>
+      <Container padding='4rem 1rem'>
+      <Heading use='h1'>Ahh não! Página não encontrada.</Heading>
+      <Heading use='h4' fontWeight='normal'>A página que você requisitou "{pathname}" não foi encontrada <span role='img' aria-label='emojis'>😥✨</span></Heading>
+      </Container>
   )
 }
 

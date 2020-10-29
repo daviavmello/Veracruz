@@ -69,7 +69,7 @@ export const getTotalPrice = cartList => cartList.reduce((acc, curr) => {
 }, 0)
 
 const FloatingCart = () => {
-	const drawer = Drawer.useState({ animated : true })
+  const drawer = Drawer.useState({ animated : true })
   const cart = useCart(s => s.cart)
   const reset = useCart(s => s.reset)
 	
