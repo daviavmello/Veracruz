@@ -10,12 +10,15 @@ import {
 	Heading,
 	Container,
 	FieldStack,
+	Set,
+	Badge,
 	OptionButtons,
 	Button,
 	Columns,
 	Group,
 	Flex,
 	Paragraph,
+	Text,
 } from 'bumbag'
 
 import { products } from 'content'
@@ -23,32 +26,37 @@ import useCart from 'store/cart'
 import { getTotalPrice, getCartList } from 'utils/cart'
 
 const Item = ({ id, title, color, gender, size, count }) => {
-	const { price } = products.find(x => x.id === id)
+	const { images, price } = products.find(x => x.id === id)
 
 	return (
 		<Container>
 			<Columns>
-				<Columns.Column spread={9}>
-					{/* {images?.default && (
-						<div style={{ position: 'relative' }}>
-							<Image src={`/img/${images.default}`} />
-						</div>
-					)} */}
-					<Paragraph fontWeight='semibold' paddingRight='0'>
+				<Columns.Column spread={9} display='flex'>
+					<Stack>
+						<Badge isAttached>{count}</Badge>
+						{images?.default && (
+							<Image
+								src={`/img/${images.default}`}
+								borderRadius='default'
+								style={{ height: '3rem', width: 'auto' }}
+							></Image>
+						)}
+					</Stack>
+					<Stack paddingLeft='1rem'>
 						{title}
-					</Paragraph>
+						<Paragraph fontSize='100' color='grey'>
+							{dictionary.colors[color] || color} {' / '} {dictionary.genders[gender] || gender} {' / '}{' '}
+							{dictionary.sizes[size] || size}
+						</Paragraph>
+					</Stack>
 				</Columns.Column>
 				<Columns.Column spread={3}>
-					<Paragraph fontWeight='semibold'>R${price.toFixed(2)}</Paragraph>
-				</Columns.Column>
-				<Columns.Column paddingTop='0' paddingBottom='1rem'>
-					<Paragraph fontSize='100' color='grey'>
-						{dictionary.colors[color] || color} {' / '} {dictionary.genders[gender] || gender} {' / '}{' '}
-						{dictionary.sizes[size] || size}
+					<Paragraph fontWeight='regular' display='flex'>
+						R${price.toFixed(2)}
 					</Paragraph>
 				</Columns.Column>
 			</Columns>
-				<Divider margin='0' />
+			<Divider margin='0.5rem 0' />
 		</Container>
 	)
 }
@@ -69,14 +77,16 @@ const Cart = () => {
 							<Item key={key} {...rest} />
 						))}
 					</Stack>
-					<Columns padding="2rem 0">
+						{cartList?.length > 0 && (
+					<Columns padding='1rem 0'>
 						<Columns.Column spread={9}>
-						<Paragraph fontWeight='semibold'>Total</Paragraph>
+							<Paragraph fontWeight='semibold'>Total</Paragraph>
 						</Columns.Column>
 						<Columns.Column spread={3}>
-						<Paragraph fontWeight='semibold'>R${totalPrice}</Paragraph>
+							<Paragraph fontWeight='semibold'>R${totalPrice}</Paragraph>
 						</Columns.Column>
 					</Columns>
+						)}
 				</Columns.Column>
 			</Columns>
 		</Container>
