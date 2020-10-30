@@ -155,7 +155,7 @@ const FloatingCart = () => {
 }
 
 const Navbar = () => (
-	<div style={{ position: 'sticky', top: 0 }}>
+	<div style={{ position: 'sticky', top: 0, zIndex: 1 }}>
 		<Box as='header' backgroundColor='primary' color='white'>
 			<Container as='nav' padding='1rem'>
 				<Flex alignItems='center' justifyContent='space-between'>
