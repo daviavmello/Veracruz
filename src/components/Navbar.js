@@ -5,7 +5,7 @@ import { ShoppingCart, Trash2, ExternalLink, DollarSign, X } from 'react-feather
 
 import { products } from 'content'
 import useCart from 'store/cart'
-import { getTotalCount, getCartList } from 'utils/cart'
+import { getTotalCount, getCartList, getTotalPrice } from 'utils/cart'
 import dictionary from 'utils/dictionary'
 import Logo from 'components/Logo.js'
 
@@ -41,7 +41,9 @@ const Item = ({ id, count, variants }) => {
 										</td>
 									)}
 									<td style={{ textAlign: 'right' }}>
-										<Text marginX='0.25rem' fontSize='100' fontWeight='semibold'>{count}</Text>
+										<Text marginX='0.25rem' fontSize='100' fontWeight='semibold'>
+											{count}
+										</Text>
 									</td>
 								</tr>
 							))}
@@ -63,16 +65,11 @@ const Item = ({ id, count, variants }) => {
 	)
 }
 
-export const getTotalPrice = cartList => cartList.reduce((acc, curr) => {
-	const productPrice = products.find(({ id }) => id === curr.id).price
-	return acc + (productPrice * curr.count)
-}, 0)
-
 const FloatingCart = () => {
-  const drawer = Drawer.useState({ animated : true })
-  const cart = useCart(s => s.cart)
-  const reset = useCart(s => s.reset)
-	
+	const drawer = Drawer.useState({ animated: true })
+	const cart = useCart(s => s.cart)
+	const reset = useCart(s => s.reset)
+
 	const totalCount = getTotalCount(cart)
 	const cartList = getCartList(cart)
 	const totalPrice = getTotalPrice(cartList).toFixed(2)
@@ -82,11 +79,15 @@ const FloatingCart = () => {
 		drawer.hide()
 	}
 
-  return (
+	return (
 		<Flex>
 			<Drawer.Disclosure {...drawer}>
 				<Button size='small' color='white' backgroundColor='primary' border='none'>
-					{!!totalCount && <Badge isAttached color='primary' backgroundColor='white'>{totalCount}</Badge>}
+					{!!totalCount && (
+						<Badge isAttached color='primary' backgroundColor='white'>
+							{totalCount}
+						</Badge>
+					)}
 					<ShoppingCart />
 				</Button>
 			</Drawer.Disclosure>
@@ -103,17 +104,6 @@ const FloatingCart = () => {
 								</Button>
 							</Flex>
 							<Divider margin='0' />
-							{/* <Menu background='white'>
-								<Menu.Group>
-									<Menu.Item use={Link} to='/cart' onClick={drawer.hide} margin='0' color='success'>
-										<Flex alignItems='center'>
-											<ExternalLink size={16} display='block' />
-											&nbsp; Conferir o carrinho
-										</Flex>
-									</Menu.Item>
-								</Menu.Group>
-							</Menu>
-							<Divider margin='0' /> */}
 						</Box>
 						<Box flex='1' padding='2rem 0'>
 							{cartList.map(({ id, ...rest }) => (
@@ -165,18 +155,18 @@ const FloatingCart = () => {
 }
 
 const Navbar = () => (
-  <div style={{position:'sticky', top:0}}>
-    <Box as='header' backgroundColor='primary' color='white'>
-      <Container as='nav' padding='1rem'>
-        <Flex alignItems='center' justifyContent='space-between'>
-          <Link to='/'>
-            <Logo style={{ height: '2rem', width: 'auto' }} />
-          </Link>
-          <FloatingCart />
-        </Flex>
-      </Container>
-    </Box>
-  </div>
+	<div style={{ position: 'sticky', top: 0 }}>
+		<Box as='header' backgroundColor='primary' color='white'>
+			<Container as='nav' padding='1rem'>
+				<Flex alignItems='center' justifyContent='space-between'>
+					<Link to='/'>
+						<Logo style={{ height: '2rem', width: 'auto' }} />
+					</Link>
+					<FloatingCart />
+				</Flex>
+			</Container>
+		</Box>
+	</div>
 )
 
 export default Navbar

@@ -1,3 +1,5 @@
+import { products } from 'content'
+
 export const getProductCartKey = ({ id, color, gender, size }) =>
 	[id, color, gender, size].filter(Boolean).join('_').toUpperCase()
 
@@ -36,3 +38,8 @@ export const getCartList = cart =>
 		return [...acc.filter(x => x.id !== id), { id, count: item.count + rest.count, variants: [...item.variants, rest] }]
 	}, [])
 
+export const getTotalPrice = cartList =>
+	cartList.reduce((acc, curr) => {
+		const productPrice = products.find(({ id }) => id === curr.id).price
+		return acc + productPrice * curr.count
+	}, 0)
