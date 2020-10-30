@@ -22,12 +22,9 @@ import { products } from 'content'
 import useCart from 'store/cart'
 import { getTotalPrice, getCartList } from 'utils/cart'
 
-console.log({ getTotalPrice })
+const Item = ({ id, title, color, gender, size, count }) => {
+	const { price } = products.find(x => x.id === id)
 
-const Item = ({ title, color, gender, size, count }) => {
-	const cart = useCart(s => s.cart)
-	const cartList = getCartList(cart)
-	const totalPrice = getTotalPrice(cartList).toFixed(2)
 	return (
 		<Container>
 			<Columns>
@@ -42,7 +39,7 @@ const Item = ({ title, color, gender, size, count }) => {
 					</Paragraph>
 				</Columns.Column>
 				<Columns.Column spread={3}>
-					<Paragraph fontWeight='semibold'>R${totalPrice}</Paragraph>
+					<Paragraph fontWeight='semibold'>R${price.toFixed(2)}</Paragraph>
 				</Columns.Column>
 				<Columns.Column paddingTop='0' paddingBottom='1rem'>
 					<Paragraph fontSize='100' color='grey'>
@@ -58,9 +55,10 @@ const Item = ({ title, color, gender, size, count }) => {
 
 const Cart = () => {
 	const cart = useCart(x => x.cart)
+	const cartList = getCartList(cart)
+	const totalPrice = getTotalPrice(cartList).toFixed(2)
 
 	const flattenedCart = Object.entries(cart).map(([key, v]) => ({ key, ...v }))
-
 	return (
 		<Container padding='4rem 1rem'>
 			<Columns>
@@ -71,6 +69,14 @@ const Cart = () => {
 							<Item key={key} {...rest} />
 						))}
 					</Stack>
+					<Columns padding="2rem 0">
+						<Columns.Column spread={9}>
+						<Paragraph fontWeight='semibold'>Total</Paragraph>
+						</Columns.Column>
+						<Columns.Column spread={3}>
+						<Paragraph fontWeight='semibold'>R${totalPrice}</Paragraph>
+						</Columns.Column>
+					</Columns>
 				</Columns.Column>
 			</Columns>
 		</Container>

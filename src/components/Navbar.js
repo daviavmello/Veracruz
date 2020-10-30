@@ -94,9 +94,9 @@ const FloatingCart = () => {
 			<Drawer placement='right' slide width='560px' maxWidth='100%' {...drawer}>
 				<Flex flexDirection='column' height='100%' justifyContent='space-between' overflowY='auto'>
 					<Flex flexDirection='column'>
-						<Box position='sticky' top='0rem' zIndex='1'>
+						<Box position='sticky' top='0rem' background='white' zIndex='1'>
 							<Flex justifyContent='space-between' alignItems='center' padding='1rem 0 0.5rem 1rem'>
-								<Heading use='h4' background='white' margin='0'>
+								<Heading use='h4' margin='0'>
 									Resumo do carrinho ({totalCount})
 								</Heading>
 								<Button background='none' border='none' padding='1rem' onClick={drawer.hide}>

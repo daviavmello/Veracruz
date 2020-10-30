@@ -12,8 +12,8 @@ import {
 	Button,
 	Columns,
 	Group,
-  Flex,
-  Paragraph,
+  	Flex,
+  	Paragraph,
 } from 'bumbag'
 
 import { products } from 'content'
