@@ -14,7 +14,7 @@ const Footer = () => (
 					<Box>
 						<Link to='/'>
 							<Logo style={{ height: '3rem', width: 'auto', marginRight: '1rem' }} />
-							<LogoSecondary style={{ height: '3.7rem', width: 'auto', fill: '#fff', alignItems: 'center' }} />
+							<LogoSecondary style={{ height: '3.5rem', width: 'auto', fill: '#fff' }} />
 						</Link>
 					</Box>
 					<Set orientation='horizontal'>
