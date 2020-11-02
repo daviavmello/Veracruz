@@ -9,16 +9,15 @@ import { getTotalCount, getCartList, getTotalPrice } from 'utils/cart'
 import dictionary from 'utils/dictionary'
 import Logo from 'components/Logo.js'
 
-const Item = ({ id, count, variants }) => {
+const Item = ({ id, variants }) => {
 	const { title, price } = products.find(x => x.id === id)
 	return (
-		<Box paddingX='1rem' marginBottom='4rem'>
+		<Box paddingX='1rem' marginBottom='2rem'>
 			<Stack spacing='minor-2'>
 				<Set alignItems='center' justifyContent='space-between'>
 					<Text fontSize={600} fontWeight='semibold'>
 						{title}
 					</Text>
-					<Badge>{count}</Badge>
 				</Set>
 				<Box>
 					<table style={{ width: '100%' }}>
@@ -40,24 +39,18 @@ const Item = ({ id, count, variants }) => {
 											<Text fontSize='100'>{dictionary.sizes[size] || size}</Text>
 										</td>
 									)}
-									<td style={{ textAlign: 'right' }}>
-										<Text marginX='0.25rem' fontSize='100' fontWeight='semibold'>
-											{count}
+									<td>
+										<Text fontSize='100' textAlign='right' display='block'>
+											<span>
+												{count} × R$ {price.toFixed(2)} = &nbsp;
+											</span>
+											<Badge fontWeight='semibold'>R$ {(count * price).toFixed(2)}</Badge>
 										</Text>
 									</td>
 								</tr>
 							))}
 						</tbody>
 					</table>
-				</Box>
-				<Divider />
-				<Box>
-					<Text fontSize='100' textAlign='right' display='block'>
-						<span>
-							{count} × R$ {price.toFixed(2)} = &nbsp;
-						</span>
-						<Badge fontWeight='semibold'>R$ {(count * price).toFixed(2)}</Badge>
-					</Text>
 				</Box>
 				<Divider />
 			</Stack>
@@ -114,7 +107,6 @@ const FloatingCart = () => {
 					{!!totalCount && (
 						<Menu position='sticky' bottom='0' background='white'>
 							<Menu.Group>
-								<Menu.Divider margin='0' />
 								<Menu.Item disabled>
 									<Flex alignItems='center' justifyContent='space-between'>
 										<Flex alignItems='center'>
@@ -139,12 +131,6 @@ const FloatingCart = () => {
 									</Flex>
 								</Menu.Item>
 								<Menu.Divider margin='0' />
-								<Menu.Item onClick={drawer.hide}>
-									<Flex alignItems='center'>
-										<X size={16} display='block' />
-										&nbsp; Fechar
-									</Flex>
-								</Menu.Item>
 							</Menu.Group>
 						</Menu>
 					)}

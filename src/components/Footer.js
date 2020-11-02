@@ -28,14 +28,14 @@ const Footer = () => (
 				</Stack>
 
 				<Stack orientation='horizontal'>
-					<Paragraph fontSize='100'>
+					<Paragraph fontSize='100' spreadTablet={6} spreadWidescreen={6}>
 						Veracruz Vestuário & Companhia Limitada
 						<br />
 						Conhecereis a verdade e a verdade os libertará.
 						<br />
 						Jesus é o caminho a verdade e a vida
 					</Paragraph>
-					<Paragraph fontSize='100'>
+					<Paragraph fontSize='100' spreadTablet={6} spreadWidescreen={6}>
 						Brasília - DF
 						<br />
 						CNPJ: 28.039.254/0001-32

@@ -31,7 +31,7 @@ const Item = ({ id, title, color, gender, size, count }) => {
 	return (
 		<Container>
 			<Columns>
-				<Columns.Column spread={9} display='flex'>
+				<Columns.Column spreadTablet={9} spreadWidescreen={9} spread={9} display='flex'>
 					<Stack>
 						<Badge isAttached>{count}</Badge>
 						{images?.default && (
@@ -50,9 +50,9 @@ const Item = ({ id, title, color, gender, size, count }) => {
 						</Paragraph>
 					</Stack>
 				</Columns.Column>
-				<Columns.Column spread={3}>
+				<Columns.Column spreadTablet={3} spreadWidescreen={6} spread={3}>
 					<Paragraph fontWeight='regular' display='flex'>
-						R${price.toFixed(2)}
+						R$ {price.toFixed(2)}
 					</Paragraph>
 				</Columns.Column>
 			</Columns>
@@ -79,10 +79,10 @@ const Cart = () => {
 					</Stack>
 						{cartList?.length > 0 && (
 					<Columns padding='1rem 0'>
-						<Columns.Column spread={9}>
+						<Columns.Column spreadTablet={9} spreadWidescreen={9} spread={9}>
 							<Paragraph fontWeight='semibold'>Total</Paragraph>
 						</Columns.Column>
-						<Columns.Column spread={3}>
+						<Columns.Column spreadTablet={3} spreadWidescreen={9} spread={3}>
 							<Paragraph fontWeight='semibold'>R${totalPrice}</Paragraph>
 						</Columns.Column>
 					</Columns>
