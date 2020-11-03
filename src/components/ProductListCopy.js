@@ -52,8 +52,7 @@ const About = () => (
 
 const ProductList = () => {
 	return (
-		<Container padding='0 1rem 4rem 0'>
-		<Hero />
+		<Container padding='0 1rem 4rem 1rem'>
 			<Stack spacing='major-4'>
 				<Heading use='h1'>Produtos</Heading>
 				<Columns>
@@ -71,4 +70,13 @@ const ProductList = () => {
 	)
 }
 
-export default ProductList
+const Home = () => {
+	return (
+		<Container isFluid padding='0'>
+		<Hero />
+		<ProductList />
+		</Container>
+	)
+}
+
+export default Home

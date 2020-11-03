@@ -126,7 +126,7 @@ const ProductView = ({ id }) => {
 						</Card>
 					</Stack>
 				</Columns.Column>
-				<Columns.Column paddingLeft='8rem' spreadTablet={12} spreadWidescreen={6} spread={6}>
+				<Columns.Column spreadTablet={12} spreadWidescreen={6} spread={6}>
 					{actualProduct.title && <Heading use='h1'>{actualProduct.title}</Heading>}
 					{actualProduct.description && (
 						<Heading as='h2' use='h4' fontWeight='semibold'>
