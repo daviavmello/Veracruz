@@ -1,0 +1,32 @@
+
+    {
+        "id": "hoodie",
+        "title": "Moletom",
+        "price": 160,
+        "description": "Moletom com capuz e bolso cangurú de grife, 100% algodão feito com silk-screen",
+        "colors": [
+          "WHITE"
+        ],
+        "genders": [
+          "BOY"
+        ],
+        "sizes": [
+          "S",
+          "M",
+          "L"
+        ],
+        "info": "Jesus é tudo aquilo que precisamos, Ele é amor, Ele é alegria, Ele é o caminho, Ele é a verdade, Ele é a vida Ele é a paz, ELE É!",
+        "images": {
+          "default": "hoodie-white.jpg",
+          "color": {
+            "white": [
+              "hoodie-white.jpg",
+              "hoodie-white_back.jpg"
+            ],
+            "black": [
+              "hoodie-black.jpg",
+              "hoodie-black_back.jpg"
+            ]
+          }
+        }
+      }

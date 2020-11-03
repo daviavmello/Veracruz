@@ -79,8 +79,10 @@ const Product = ({ id, title, colors, genders, sizes, price, onAddToCart, onSubt
 							options={sizes.map(value => ({ value, label: dictionary.sizes[value] || value }))}
 						/>
 					)}
+					<Columns>
+					<Columns.Column spreadMobile={6}> 
 					<Stack orientation='horizontal'>
-						<Group spread={6}>
+						<Group>
 							<Button size='small' onClick={handleSubtractFromCart} disabled={!count}>
 								<Minus size={16} />
 							</Button>
@@ -91,12 +93,16 @@ const Product = ({ id, title, colors, genders, sizes, price, onAddToCart, onSubt
 								<Plus size={16} />
 							</Button>
 						</Group>
-						<Flex alignItems='center' justifyContent='flex-end'>
+					</Stack>
+						</Columns.Column>
+						<Columns.Column spreadMobile={6} display='flex' justifyContent='flex-end'> 
+						<Flex alignItems='center'>
 							<Paragraph fontWeight='semibold' margin='0'>
 								R$ {price.toFixed(2)}
 							</Paragraph>
 						</Flex>
-					</Stack>
+						</Columns.Column>
+					</Columns>
 				</FieldStack>
 			</form>
 		</Box>
