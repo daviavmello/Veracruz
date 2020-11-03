@@ -3,7 +3,7 @@
     {
       "id": "pfs",
       "title": "Pecadores Feitos Santos",
-      "price": 59.7,
+      "price": 80,
       "description": "Camiseta de grife, 100% algodão feita com silk-screen",
       "colors": [
         "WHITE",
@@ -34,7 +34,7 @@
     {
       "id": "hoodie",
       "title": "Moletom",
-      "price": 139.7,
+      "price": 160,
       "description": "Moletom com capuz e bolso cangurú de grife, 100% algodão feito com silk-screen",
       "colors": [
         "WHITE"
@@ -65,7 +65,7 @@
     {
       "id": "verse",
       "title": "Versículo",
-      "price": 59.7,
+      "price": 80,
       "description": "Camiseta de grife, 100% algodão feita com silk-screen",
       "colors": [
         "WHITE",

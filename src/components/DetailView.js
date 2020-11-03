@@ -80,7 +80,7 @@ const Product = ({ id, title, colors, genders, sizes, price, onAddToCart, onSubt
 						/>
 					)}
 					<Stack orientation='horizontal'>
-						<Group>
+						<Group spread={6}>
 							<Button size='small' onClick={handleSubtractFromCart} disabled={!count}>
 								<Minus size={16} />
 							</Button>
