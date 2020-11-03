@@ -1,25 +1,7 @@
 import React from 'react'
 import { Minus, Plus } from 'react-feather'
 import dictionary from 'utils/dictionary'
-import {
-	Card,
-	Divider,
-	Box,
-	Image,
-	Stack,
-	Heading,
-	Container,
-	FieldStack,
-	Set,
-	Badge,
-	OptionButtons,
-	Button,
-	Columns,
-	Group,
-	Flex,
-	Paragraph,
-	Text,
-} from 'bumbag'
+import { Divider, Image, Stack, Heading, Container, Badge, Columns, Paragraph } from 'bumbag'
 
 import { products } from 'content'
 import useCart from 'store/cart'
@@ -69,24 +51,34 @@ const Cart = () => {
 	const flattenedCart = Object.entries(cart).map(([key, v]) => ({ key, ...v }))
 	return (
 		<Container padding='4rem 1rem'>
+			<Heading use='h1'>Carrinho</Heading>
+			{!cartList?.length > 0 && (
+				<Columns padding='1rem 0'>
+					<Heading use='h4' fontWeight='normal'>
+						Ahh não! O seu carrinho (ainda) está vazio!
+						<span role='img' aria-label='emojis'>
+							&nbsp;🤪 🛒
+						</span>
+					</Heading>
+				</Columns>
+			)}
 			<Columns>
-				<Columns.Column spread={4}>
+				<Columns.Column marginY='2rem' spread={4}>
 					<Stack spacing='major-4'>
-						<Heading use='h1'>Carrinho</Heading>
 						{flattenedCart.map(({ key, ...rest }) => (
 							<Item key={key} {...rest} />
 						))}
 					</Stack>
-						{cartList?.length > 0 && (
-					<Columns padding='1rem 0'>
-						<Columns.Column spreadTablet={9} spreadWidescreen={9} spread={9}>
-							<Paragraph fontWeight='semibold'>Total</Paragraph>
-						</Columns.Column>
-						<Columns.Column spreadTablet={3} spreadWidescreen={9} spread={3}>
-							<Paragraph fontWeight='semibold'>R${totalPrice}</Paragraph>
-						</Columns.Column>
-					</Columns>
-						)}
+					{cartList?.length > 0 && (
+						<Columns padding='1rem 0'>
+							<Columns.Column spreadTablet={9} spreadWidescreen={9} spread={9}>
+								<Paragraph fontWeight='semibold'>Total</Paragraph>
+							</Columns.Column>
+							<Columns.Column spreadTablet={3} spreadWidescreen={9} spread={3}>
+								<Paragraph fontWeight='semibold'>R${totalPrice}</Paragraph>
+							</Columns.Column>
+						</Columns>
+					)}
 				</Columns.Column>
 			</Columns>
 		</Container>
