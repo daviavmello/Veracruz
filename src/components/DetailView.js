@@ -25,7 +25,7 @@ import useCart from 'store/cart'
 
 import NotFoundPage from 'components/NotFoundPage'
 
-const Product = ({ id, title, images, colors, genders, sizes, price, onAddToCart, onSubtractFromCart, getCount }) => {
+const Product = ({ id, title, colors, genders, sizes, price, onAddToCart, onSubtractFromCart, getCount }) => {
 	const [color, setColor] = useState(colors?.[0])
 	const [gender, setGender] = useState(genders?.[0])
 	const [size, setSize] = useState(sizes?.[0])
@@ -117,11 +117,13 @@ const ProductView = ({ id }) => {
 			<Columns>
 				<Columns.Column spreadTablet={12} spreadWidescreen={6} spread={6}>
 					<Stack>
+						<Card variant='bordered' as='article' padding='0'>
 						{actualProduct.images?.default && (
 							<div style={{ position: 'relative' }}>
 								<Image src={`/img/${actualProduct.images.default}`} />
 							</div>
 						)}
+						</Card>
 					</Stack>
 				</Columns.Column>
 				<Columns.Column paddingLeft='8rem' spreadTablet={12} spreadWidescreen={6} spread={6}>

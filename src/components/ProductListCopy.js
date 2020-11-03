@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Hero from './Hero'
 import { Card, Box, Image, Stack, Heading, Container, Columns, Text, Paragraph, Badge } from 'bumbag'
 
 import { products } from 'content'
@@ -51,7 +52,8 @@ const About = () => (
 
 const ProductList = () => {
 	return (
-		<Container padding='4rem 1rem'>
+		<Container padding='0 1rem 4rem 0'>
+		<Hero />
 			<Stack spacing='major-4'>
 				<Heading use='h1'>Produtos</Heading>
 				<Columns>
