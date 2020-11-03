@@ -15,7 +15,7 @@ const Item = ({ id, title, color, gender, size, count }) => {
 	return (
 		<Container>
 			<Columns>
-				<Columns.Column spreadTablet={9} spreadWidescreen={9} spread={9} display='flex'>
+				<Columns.Column spreadTablet={9} spreadMobile={9} spread={9} display='flex'>
 					<Stack>
 						<Badge isAttached>{count}</Badge>
 						{images?.default && (
@@ -34,8 +34,8 @@ const Item = ({ id, title, color, gender, size, count }) => {
 						</Paragraph>
 					</Stack>
 				</Columns.Column>
-				<Columns.Column spreadTablet={3} spreadWidescreen={6} spread={3}>
-					<Paragraph fontWeight='regular' display='flex'>
+				<Columns.Column spreadTablet={3} spreadMobile={3} spread={3}>
+					<Paragraph fontWeight='regular' textAlign='end' display='grid'>
 						R$ {price.toFixed(2)}
 					</Paragraph>
 				</Columns.Column>
@@ -77,13 +77,15 @@ const Cart = () => {
 					</Stack>
 					{cartList?.length > 0 && (
 						<Columns padding='1rem 0'>
-							<Columns.Column spreadTablet={9} spreadWidescreen={9} spread={9}>
+							<Columns.Column spreadTablet={6} spreadMobile={6} spread={9} marginBottom='2rem'>
 								<Paragraph fontWeight='semibold'>Total</Paragraph>
 							</Columns.Column>
-							<Columns.Column spreadTablet={3} spreadWidescreen={9} spread={3}>
-								<Paragraph fontWeight='semibold'>R$ {totalPrice}</Paragraph>
+							<Columns.Column spreadTablet={6} spreadMobile={6} spread={3}>
+								<Paragraph textAlign='end' fontWeight='semibold'>
+									R$ {totalPrice}
+								</Paragraph>
 							</Columns.Column>
-							<Columns.Column spread={8}>
+							<Columns.Column>
 								<PayPalButton total={totalPrice} onClick={onReset} />
 							</Columns.Column>
 						</Columns>
