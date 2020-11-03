@@ -7,6 +7,8 @@ import { products } from 'content'
 import useCart from 'store/cart'
 import { getTotalPrice, getCartList } from 'utils/cart'
 
+import PayPalButton from './PayPalButton'
+
 const Item = ({ id, title, color, gender, size, count }) => {
 	const { images, price } = products.find(x => x.id === id)
 
@@ -47,6 +49,10 @@ const Cart = () => {
 	const cart = useCart(x => x.cart)
 	const cartList = getCartList(cart)
 	const totalPrice = getTotalPrice(cartList).toFixed(2)
+	const reset = useCart(s => s.reset)
+	const onReset = () => {
+		reset()
+	}
 
 	const flattenedCart = Object.entries(cart).map(([key, v]) => ({ key, ...v }))
 	return (
@@ -75,7 +81,10 @@ const Cart = () => {
 								<Paragraph fontWeight='semibold'>Total</Paragraph>
 							</Columns.Column>
 							<Columns.Column spreadTablet={3} spreadWidescreen={9} spread={3}>
-								<Paragraph fontWeight='semibold'>R${totalPrice}</Paragraph>
+								<Paragraph fontWeight='semibold'>R$ {totalPrice}</Paragraph>
+							</Columns.Column>
+							<Columns.Column spread={8}>
+								<PayPalButton total={totalPrice} onClick={onReset} />
 							</Columns.Column>
 						</Columns>
 					)}

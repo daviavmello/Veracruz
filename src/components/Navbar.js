@@ -84,7 +84,7 @@ const FloatingCart = () => {
 					<ShoppingCart />
 				</Button>
 			</Drawer.Disclosure>
-			<Drawer placement='right' slide width='560px' maxWidth='100%' {...drawer}>
+			<Drawer placement='right' slide width='560px' maxWidth='100%' maxHeight='100%' {...drawer}>
 				<Flex flexDirection='column' height='100%' justifyContent='space-between' overflowY='auto'>
 					<Flex flexDirection='column'>
 						<Box position='sticky' top='0rem' background='white' zIndex='1'>
