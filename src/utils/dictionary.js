@@ -4,8 +4,8 @@ const dictionary = {
 		BLACK: 'Preto',
 	},
 	genders: {
-		MAN: 'Masculino',
-		WOMAN: 'Feminino',
+		BOY: 'Masculino',
+		GIRL: 'Feminino',
 	},
 	sizes: {
 		'S': 'P',
