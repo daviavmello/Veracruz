@@ -57,9 +57,9 @@ const ProductList = () => {
 				<Heading use='h1'>Produtos</Heading>
 				<Columns>
 					{products.map(product => (
-						<Columns.Column spreadTablet={12} spreadWidescreen={4} spread={4}>
+						<Columns.Column key={product.id} spreadTablet={12} spreadWidescreen={4} spread={4}>
 							<Link to={{pathname: `/${product.id}`, query: { id: product.id }}}>
-								<Product {...product} />
+								<Product {...product} key={product.id} />
 							</Link>
 						</Columns.Column>
 					))}

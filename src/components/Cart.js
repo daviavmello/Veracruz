@@ -1,5 +1,5 @@
 import React from 'react'
-import { Minus, Plus } from 'react-feather'
+// import { Minus, Plus } from 'react-feather'
 import dictionary from 'utils/dictionary'
 import { Divider, Image, Stack, Heading, Container, Badge, Columns, Paragraph } from 'bumbag'
 

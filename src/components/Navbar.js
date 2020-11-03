@@ -23,7 +23,7 @@ const Item = ({ id, variants }) => {
 					<table style={{ width: '100%' }}>
 						<tbody>
 							{variants.map(({ count, color, gender, size }) => (
-								<tr>
+								<tr key={size}>
 									{color && (
 										<td>
 											<Text fontSize='100'>{dictionary.colors[color] || color}</Text>
@@ -101,7 +101,7 @@ const FloatingCart = () => {
 						<Box flex='1' padding='2rem 0'>
 							{cartList.map(({ id, ...rest }) => (
 								<Item key={id} id={id} {...rest} />
-							))}
+								))}
 						</Box>
 					</Flex>
 					{!!totalCount && (

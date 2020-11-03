@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import GlobalStyle from 'components/GlobalStyle'
 import Navbar from 'components/Navbar'
 import DetailView from 'components/DetailView'
-import ProductList from 'components/ProductList'
+// import ProductList from 'components/ProductList'
 import ProductListCopy from 'components/ProductListCopy'
 import Cart from 'components/Cart'
 import NotFoundPage from 'components/NotFoundPage'
@@ -17,7 +17,7 @@ const App = () => (
 		<main>
 			<Switch>
 				<Route exact path='/' component={ProductListCopy} />
-				<Route exact path='/products' component={ProductList} />
+				{/* <Route exact path='/products' component={ProductList} /> */}
 				<Route exact path='/cart' component={Cart} />
 				<Route path='/:id' component={DetailView} />
 				<Route component={NotFoundPage} />
