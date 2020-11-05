@@ -8,7 +8,14 @@ import { products } from 'content'
 const Product = ({ title, images, price }) => {
 	return (
 		<Box textAlign='center' marginBottom='2rem'>
-			<Card variant='shadowed' as='article' cursor='pointer' marginBottom='0.5rem' overflow='hidden' padding='0'>
+			<Card
+				variant='shadowed'
+				as='article'
+				cursor='pointer'
+				marginBottom='0.5rem'
+				overflow='hidden'
+				padding='0'
+			>
 				{images?.default && (
 					<div style={{ position: 'relative' }}>
 						<Image src={`/img/${images.default}`} />
@@ -25,30 +32,27 @@ const Product = ({ title, images, price }) => {
 
 const NextProduct = () => {
 	return (
-				<Box textAlign='center' marginBottom='2rem'>
-					<Card
-						maxHeight='12rem'
-						variant='shadowed'
-						as='article'
-						cursor='pointer'
-						marginBottom='0.5rem'
-						overflow='hidden'
-						padding='0'
-					>
-						<div style={{ }}>
-							<Image src={`/img/next.jpg`} />
-						</div>
-					</Card>
-					<Heading use='h5' padding='1rem 0 0.25rem 0' marginBottom='0'>
-						Moletom
-					</Heading>
-					<Text>
-						Em breve&nbsp;
-						<span role='img' aria-label='emojis'>
-							👀
-						</span>
-					</Text>
-				</Box>
+		<Box textAlign='center' marginBottom='2rem'>
+			<Card
+				maxHeight='12rem'
+				variant='shadowed'
+				as='article'
+				cursor='pointer'
+				marginBottom='0.5rem'
+				overflow='hidden'
+				padding='0'
+			>
+				<div style={{}}>
+					<Image src={`/img/next.jpg`} />
+				</div>
+			</Card>
+			<Heading use='h5' padding='1rem 0 0.25rem 0' marginBottom='0'>
+				Em breve&nbsp;
+				<span role='img' aria-label='emojis'>
+					👀
+				</span>
+			</Heading>
+		</Box>
 	)
 }
 
@@ -115,7 +119,7 @@ const ProductList = () => {
 						</Columns.Column>
 					))}
 				</Columns>
-						<NextProduct />
+				<NextProduct />
 			</Stack>
 			<About />
 		</Container>
