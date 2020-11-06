@@ -1,5 +1,6 @@
 import React from 'react';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
+import Cart from './Cart';
 
 export default class MyApp extends React.Component {
     render() {
@@ -7,6 +8,8 @@ export default class MyApp extends React.Component {
 			// 1, 2, and ... Poof! You made it, everything's fine and dandy!
             		console.log("Payment successful!", payment);
                     // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
+                    Cart.reset()
+
 		}
 
 		const onCancel = (data) => {
