@@ -24,6 +24,7 @@ import { getItemCount, addToCart, subtractFromCart } from 'utils/cart'
 import useCart from 'store/cart'
 
 import NotFoundPage from 'components/NotFoundPage'
+import Cart from './Cart'
 
 const Product = ({
 	id,
@@ -59,11 +60,13 @@ const Product = ({
 		<Columns>
 			<Columns.Column spreadMobile={12} spreadTablet={12} spread={6}>
 				<Card variant='bordered' as='article' padding='0'>
-					{images?.default && (
+					{color === "WHITE" ? (
 						<div style={{ position: 'relative' }}>
-							<Image src={`/img/${images.default}`} />
+							<Image src={`/img/${images.color.white[0]}`} />
 						</div>
-					)}
+					) : <div style={{ position: 'relative' }}>
+					<Image src={`/img/${images.color.black}`} />
+				</div>}
 				</Card>
 			</Columns.Column>
 			<Columns.Column spreadMobile={12} spreadTablet={12} spread={6}>
