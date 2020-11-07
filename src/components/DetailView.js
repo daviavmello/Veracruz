@@ -24,7 +24,7 @@ import { getItemCount, addToCart, subtractFromCart } from 'utils/cart'
 import useCart from 'store/cart'
 
 import NotFoundPage from 'components/NotFoundPage'
-import Cart from './Cart'
+// import Cart from './Cart'
 
 const Product = ({
 	id,
