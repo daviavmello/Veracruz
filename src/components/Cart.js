@@ -86,7 +86,7 @@ const Cart = () => {
 								</Paragraph>
 							</Columns.Column>
 							<Columns.Column>
-								<PayPalButton total={totalPrice} onClick={onReset} />
+								<PayPalButton total={totalPrice} reset={reset}/>
 							</Columns.Column>
 						</Columns>
 					)}
