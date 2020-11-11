@@ -5,7 +5,7 @@ export default class PayPal extends React.Component {
 	render() {
         const { onSuccess, currency, name, total } = this.props;
 		return (
-			<PayPalButton disableCard
+			<PayPalButton
 				// shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
 				createOrder={(data, actions) => {
 					console.log('Actions: ' + actions)
@@ -58,10 +58,10 @@ export default class PayPal extends React.Component {
 					})
 				}}
 				onSuccess={(details, data) => {
-                    onSuccess(details, data)
+                    // onSuccess(details, data)
                     alert(details.payer.name.given_name + ', sua transação foi concluída com sucesso!')
                     this.props.reset()
-                    return fetch('/api/paypal-transaction-complete', {
+                    return fetch('/', {
                         method: 'post',
                         headers: {
                             'content-type': 'application/json'

@@ -96,7 +96,7 @@ const Cart = () => {
 								</Paragraph>
 							</Columns.Column>
 							<Columns.Column zIndex='0'>
-								<PayPal  disableCard
+								<PayPal
 									total={totalPrice}
 									currency={'BRL'}
 									onSuccess={paymentHandler}
