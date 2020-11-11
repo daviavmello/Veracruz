@@ -1,10 +1,9 @@
 import React from 'react'
 import { PayPalButton } from 'react-paypal-button-v2'
-import { Link } from 'react-router-dom'
 
 export default class PayPal extends React.Component {
 	render() {
-        const { onSuccess, currency, details, name, description, units, unitPrice, total, sku } = this.props;
+        const { onSuccess, currency, name, total } = this.props;
 		return (
 			<PayPalButton disableCard
 				// shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
@@ -83,7 +82,7 @@ export default class PayPal extends React.Component {
                         
 				}}
 				options={{
-				  clientId: 'Aej7MBf_zO4H7J9zI1jBN60DUGhSlCSXTq2GMks_LLFkICSxoQNrICl5Ph9Ldqsb5pbZrQlljSTIK6iq'
+				  clientId: 'ASllCCQ16tHyF6MKLa2UWC3SlrV-A6TLo-3wKm-L-g-rGemrxR_l1cRXnNMG01wkN-A7iyBlo5rKEjd6'
 				}}
 			/>
 		)
