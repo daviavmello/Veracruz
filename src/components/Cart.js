@@ -7,9 +7,9 @@ import { products } from 'content'
 import useCart from 'store/cart'
 import { getTotalPrice, getCartList } from 'utils/cart'
 
-import PayPalButton from './PayPalButton'
+import PayPal from './PayPal'
 
-const Item = ({ id, title, color, gender, size, count }) => {
+export const Item = ({ id, title, color, gender, size, count }) => {
 	const { images, price } = products.find(x => x.id === id)
 
 	return (
@@ -50,11 +50,21 @@ const Cart = () => {
 	const cartList = getCartList(cart)
 	const totalPrice = getTotalPrice(cartList).toFixed(2)
 	const reset = useCart(s => s.reset)
-	const onReset = () => {
-		reset()
+
+	const paymentHandler = (details, data) => {
+		/** Here you can call your backend API
+		 endpoint and update the database */
+
+		console.log(details, data)
 	}
 
 	const flattenedCart = Object.entries(cart).map(([key, v]) => ({ key, ...v }))
+	const itemsInCart = flattenedCart.map(({ key, count }) => key + "_" + count)
+	const countInCart = flattenedCart.map(({ count, ...rest }) => count)
+	const idInCart = flattenedCart.map(count => Object.keys(count).map(i => count[i]))
+
+
+	console.log('itemsInCart: ' + itemsInCart.toLocaleString(), 'cart: ' + JSON.stringify(flattenedCart))
 	return (
 		<Container padding='4rem 1rem'>
 			<Heading use='h1'>Carrinho</Heading>
@@ -85,8 +95,19 @@ const Cart = () => {
 									R$ {totalPrice}
 								</Paragraph>
 							</Columns.Column>
-							<Columns.Column>
-								<PayPalButton total={totalPrice} reset={reset}/>
+							<Columns.Column zIndex='0'>
+								<PayPal  disableCard
+									total={totalPrice}
+									currency={'BRL'}
+									onSuccess={paymentHandler}
+									// details={JSON.stringify('itemsInCart')}
+									sku={idInCart.toLocaleString()}
+									reset={reset}
+									name={itemsInCart.toLocaleString()}
+									// description={"color here"}
+									units={countInCart.toLocaleString()}
+									// unitPrice={price.toFixed(2)}
+								/>
 							</Columns.Column>
 						</Columns>
 					)}

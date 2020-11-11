@@ -81,7 +81,7 @@ const About = () => (
 					</span>
 				</Badge>
 				<Paragraph>
-					A roupa que você veste fala muito sobre você, então porque não usar uma blusa que traga boas notícias?
+					A roupa que você veste fala muito sobre você, então por que não usar uma blusa que traga boas notícias?
 					<br /> <br />
 					“Com isso todos saberão que vocês são meus discípulos, se vocês se amarem uns aos outros”.” ‭‭João‬ ‭13:35‬
 					‭NVI‬‬

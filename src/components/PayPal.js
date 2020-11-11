@@ -1,121 +1,91 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
-// import scriptLoader from "react-async-script-loader";
-// // import Spinner from "./Spinner";
+import React from 'react'
+import { PayPalButton } from 'react-paypal-button-v2'
+import { Link } from 'react-router-dom'
 
-//  const CLIENT = {
-//    sandbox:
-//      "Aat8DGkJm-8JrK-8SsvIvClaJpy2EohIlw8x5wDkK1DfuAKpJFHeTH0dNRg3xFywRkhn-375Fjlproca",
-//    production:
-//      "your_production_key"
-//  };
-
-//  const CLIENT_ID =
-//    process.env.NODE_ENV === "production" ? CLIENT.production : CLIENT.sandbox;
-
-// let PayPalButton = null;
-// class PaypalButton extends React.Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       showButtons: false,
-//       loading: true,
-//       paid: false
-//     };
-
-//     window.React = React;
-//     window.ReactDOM = ReactDOM;
-//   }
-
-//   componentDidMount() {
-//     const { isScriptLoaded, isScriptLoadSucceed } = this.props;
-
-//     if (isScriptLoaded && isScriptLoadSucceed) {
-//       PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
-//       this.setState({ loading: false, showButtons: true });
-//     }
-//   }
-
-//   componentWillReceiveProps(nextProps) {
-//     const { isScriptLoaded, isScriptLoadSucceed } = nextProps;
-
-//     const scriptJustLoaded =
-//       !this.state.showButtons && !this.props.isScriptLoaded && isScriptLoaded;
-
-//     if (scriptJustLoaded) {
-//       if (isScriptLoadSucceed) {
-//         PayPalButton = window.paypal.Buttons.driver("react", {
-//           React,
-//           ReactDOM
-//         });
-//         this.setState({ loading: false, showButtons: true });
-//       }
-//     }
-//   }
-//   createOrder = (data, actions) => {
-//     return actions.order.create({
-//       purchase_units: [
-//         {
-//           description: +"Mercedes G-Wagon",
-//           amount: {
-//             currency_code: "BRL",
-//             value: 200
-//           }
-//         }
-//       ]
-//     });
-//   };
-
-//   onApprove = (data, actions) => {
-//     actions.order.capture().then(details => {
-//       const paymentData = {
-//         payerID: data.payerID,
-//         orderID: data.orderID
-//       };
-//       console.log("Payment Approved: ", paymentData);
-//       this.setState({ showButtons: false, paid: true });
-//     });
-//   };
-
-//   render() {
-//     const { showButtons, loading, paid } = this.state;
-
-//     return (
-//       <div className="main">
-//         {loading}
-
-//         {showButtons && (
-//           <div>
-//             <div>
-//               <h2>Items: Mercedes G-Wagon</h2>
-//               <h2>Total checkout Amount $200</h2>
-//             </div>
-
-//             <PayPalButton
-//               createOrder={(data, actions) => this.createOrder(data, actions)}
-//               onApprove={(data, actions) => this.onApprove(data, actions)}
-//             />
-//           </div>
-//         )}
-
-//         {paid && (
-//           <div className="main">
-//             {/* <img alt="Mercedes G-Wagon" src={Car} /> */}
-//             <h2>
-//               Congrats! you just paid for that picture. Work a little harder and
-//               you'll be able to afford the car itself{" "}
-//               <span role="img" aria-label="emoji">
-//                 {" "}
-//                 😉
-//               </span>
-//             </h2>
-//           </div>
-//         )}
-//       </div>
-//     );
-//   }
-// }
-
-
-//  export default scriptLoader(`https://www.paypal.com/sdk/js?client-id=${CLIENT_ID}`)(PaypalButton);
+export default class PayPal extends React.Component {
+	render() {
+        const { onSuccess, currency, details, name, description, units, unitPrice, total, sku } = this.props;
+		return (
+			<PayPalButton disableCard
+				// shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+				createOrder={(data, actions) => {
+					console.log('Actions: ' + actions)
+					return actions.order.create({
+                        purchase_units: [
+                            {
+                                // reference_id: "PUHF",
+                                description: name,
+                
+                                custom_id: "",
+                                soft_descriptor: "",
+                                amount: {
+                                    currency_code: currency,
+                                    value: total,
+                                    breakdown: {
+                                        item_total: {
+                                            currency_code: currency,
+                                            value: total
+                                        }
+                                    }
+                                },
+                                // items: [
+                                //     {
+                                //         name: "Pecadores Feitos Santos",
+                                //         // description: "The best item ever",
+                                //         sku: sku,
+                                //         unit_amount: {
+                                //             currency_code: currency,
+                                //             value: "79.70"
+                                //         },
+                                //         quantity: units
+                                //     },
+                                //     {
+                                //         name: "Versiculo",
+                                //         // description: "Asafe",
+                                //         sku: sku,
+                                //         unit_amount: {
+                                //             currency_code: currency,
+                                //             value: "79.70"
+                                //         },
+                                //         quantity: units
+                                //     }
+                                // ],
+                
+                            }
+                        ]
+						// application_context: {
+						//   shipping_preference: "NO_SHIPPING" // default is "GET_FROM_FILE"
+						// }
+					})
+				}}
+				onSuccess={(details, data) => {
+                    onSuccess(details, data)
+                    alert(details.payer.name.given_name + ', sua transação foi concluída com sucesso!')
+                    this.props.reset()
+                    return fetch('/api/paypal-transaction-complete', {
+                        method: 'post',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            orderID: data.orderID
+                        })
+                    })
+					// OPTIONAL: Call your server to save the transaction
+					// return fetch('/demo/checkout/api/paypal/order/' + data.orderID + '/capture/', {
+					// 	method: 'post',
+					// 	body: JSON.stringify({
+					// 		orderID: data.orderID,
+					// 	}).then((res) => {
+                    //         return res.json()
+                    //     })    
+                    // })
+                        
+				}}
+				options={{
+				  clientId: 'Aej7MBf_zO4H7J9zI1jBN60DUGhSlCSXTq2GMks_LLFkICSxoQNrICl5Ph9Ldqsb5pbZrQlljSTIK6iq'
+				}}
+			/>
+		)
+	}
+}
