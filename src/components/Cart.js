@@ -59,10 +59,9 @@ const Cart = () => {
 	}
 
 	const flattenedCart = Object.entries(cart).map(([key, v]) => ({ key, ...v }))
-	const itemsInCart = flattenedCart.map(({ key, count }) => key + "_" + count)
+	const itemsInCart = flattenedCart.map(({ key, count }) => key + '_' + count)
 	const countInCart = flattenedCart.map(({ count, ...rest }) => count)
 	const idInCart = flattenedCart.map(count => Object.keys(count).map(i => count[i]))
-
 
 	console.log('itemsInCart: ' + itemsInCart.toLocaleString(), 'cart: ' + JSON.stringify(flattenedCart))
 	return (
