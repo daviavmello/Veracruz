@@ -20,7 +20,7 @@ export const Item = ({ id, title, color, gender, size, count }) => {
 						<Badge isAttached>{count}</Badge>
 						{images?.default && (
 							<Image
-								src={color === 'BLACK' ? `/img/${images.color.black}` : `/img/${images.color.white}`}
+								src={`/img/${images.color[color.toLowerCase()]}`}
 								borderRadius='default'
 								style={{ height: '3rem', width: 'auto' }}
 							></Image>
