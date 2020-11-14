@@ -8,20 +8,20 @@ import { products } from 'content'
 const Product = ({ title, images, price }) => {
 	return (
 		<Box textAlign='center' marginBottom='2rem'>
-			<Card
-				variant='shadowed'
-				as='article'
-				cursor='pointer'
-				marginBottom='0.5rem'
-				overflow='hidden'
-				padding='0'
-			>
-				{images?.default && (
-					<div style={{ position: 'relative' }}>
-						<Image src={`/img/${images.default}`} />
-					</div>
-				)}
-			</Card>
+				<Badge isAttached textTransform='uppercase' padding='0.25rem 0.5rem'>
+					corra! best friday com frete grátis&nbsp;
+					<span role='img' aria-label='emojis'>
+						{' '}
+						🚚
+					</span>
+				</Badge>
+				<Card variant='shadowed' as='article' cursor='pointer' marginBottom='0.5rem' overflow='hidden' padding='0'>
+					{images?.default && (
+						<div>
+							<Image src={`/img/${images.default}`} />
+						</div>
+					)}
+				</Card>
 			<Heading use='h5' padding='1rem 0 0.25rem 0' marginBottom='0'>
 				{title}
 			</Heading>

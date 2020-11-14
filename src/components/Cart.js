@@ -20,7 +20,7 @@ export const Item = ({ id, title, color, gender, size, count }) => {
 						<Badge isAttached>{count}</Badge>
 						{images?.default && (
 							<Image
-								src={`/img/${images.default}`}
+								src={color === 'BLACK' ? `/img/${images.color.black}` : `/img/${images.color.white}`}
 								borderRadius='default'
 								style={{ height: '3rem', width: 'auto' }}
 							></Image>
@@ -86,10 +86,12 @@ const Cart = () => {
 					</Stack>
 					{cartList?.length > 0 && (
 						<Columns padding='1rem 0'>
-							<Columns.Column spreadTablet={6} spreadMobile={6} spread={9} marginBottom='2rem'>
+							<Columns.Column spreadTablet={6} spreadMobile={6} spread={9} marginBottom='1rem'>
+								<Paragraph fontWeight='semibold' marginBottom='1.3rem'>Frete</Paragraph>
 								<Paragraph fontWeight='semibold'>Total</Paragraph>
 							</Columns.Column>
 							<Columns.Column spreadTablet={6} spreadMobile={6} spread={3}>
+								<Paragraph textAlign='end' fontWeight='semibold' textTransform='uppercase' marginBottom='1.3rem'>Grátis</Paragraph>
 								<Paragraph textAlign='end' fontWeight='semibold'>
 									R$ {totalPrice}
 								</Paragraph>
