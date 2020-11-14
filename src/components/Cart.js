@@ -68,7 +68,7 @@ const Cart = () => {
 		<Container padding='4rem 1rem'>
 			<Heading use='h1'>Carrinho</Heading>
 			{!cartList?.length > 0 && (
-				<Columns padding='1rem 0'>
+				<Columns padding='1rem 0' marginLeft='0'>
 					<Heading use='h4' fontWeight='normal'>
 						Ahh não! O seu carrinho (ainda) está vazio!
 						<span role='img' aria-label='emojis'>
