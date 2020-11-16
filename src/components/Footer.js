@@ -38,7 +38,7 @@ const Footer = () => (
 					<Paragraph fontSize='100' spreadTablet={6} spreadWidescreen={6}>
 						Brasília - DF
 						<br />
-						CNPJ: 28.039.254/0001-32
+						CNPJ: 38.501.859/0001-57
 					</Paragraph>
 				</Stack>
 			</Stack>

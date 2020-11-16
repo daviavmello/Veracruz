@@ -44,6 +44,8 @@ const Product = ({
 	const [gender, setGender] = useState(genders?.[0])
 	const [size, setSize] = useState(sizes?.[0])
 
+	// const actualInventory 
+
 	const handleAddToCart = e => {
 		e.preventDefault()
 		onAddToCart({ id, title, color, gender, size })
@@ -60,13 +62,11 @@ const Product = ({
 		<Columns>
 			<Columns.Column spreadMobile={12} spreadTablet={12} spread={6}>
 				<Card variant='bordered' as='article' padding='0'>
-					{color === "WHITE" ? (
+					{(
 						<div style={{ position: 'relative' }}>
-							<Image src={`/img/${images.color.white[0]}`} />
+							<Image src={`/img/${images.color[color.toLowerCase()]}`} />
 						</div>
-					) : <div style={{ position: 'relative' }}>
-					<Image src={`/img/${images.color.black}`} />
-				</div>}
+					)}
 				</Card>
 			</Columns.Column>
 			<Columns.Column spreadMobile={12} spreadTablet={12} spread={6}>
