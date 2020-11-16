@@ -24,7 +24,6 @@ import { getItemCount, addToCart, subtractFromCart } from 'utils/cart'
 import useCart from 'store/cart'
 
 import NotFoundPage from 'components/NotFoundPage'
-// import Cart from './Cart'
 
 const Product = ({
 	id,
@@ -44,7 +43,10 @@ const Product = ({
 	const [gender, setGender] = useState(genders?.[0])
 	const [size, setSize] = useState(sizes?.[0])
 
-	// const actualInventory 
+	const updatedStock =
+		id === 'pfs' && color === 'BLACK' && gender === 'GIRL'
+			? sizes.slice(0, 2).map(value => ({ value, label: dictionary.sizes[value] || value }))
+			: sizes.map(value => ({ value, label: dictionary.sizes[value] || value }))
 
 	const handleAddToCart = e => {
 		e.preventDefault()
@@ -62,11 +64,11 @@ const Product = ({
 		<Columns>
 			<Columns.Column spreadMobile={12} spreadTablet={12} spread={6}>
 				<Card variant='bordered' as='article' padding='0'>
-					{(
+					{
 						<div style={{ position: 'relative' }}>
 							<Image src={`/img/${images.color[color.toLowerCase()]}`} />
 						</div>
-					)}
+					}
 				</Card>
 			</Columns.Column>
 			<Columns.Column spreadMobile={12} spreadTablet={12} spread={6}>
@@ -110,7 +112,7 @@ const Product = ({
 									type='radio'
 									value={size}
 									onChange={setSize}
-									options={sizes.map(value => ({ value, label: dictionary.sizes[value] || value }))}
+									options={updatedStock}
 								/>
 							)}
 							<Columns.Column spread={6} display='flex'>
