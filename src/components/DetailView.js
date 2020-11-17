@@ -43,10 +43,17 @@ const Product = ({
 	const [gender, setGender] = useState(genders?.[0])
 	const [size, setSize] = useState(sizes?.[0])
 
-	const updatedStock =
-		id === 'pfs' && color === 'BLACK' && gender === 'GIRL'
-			? sizes.slice(0, 2).map(value => ({ value, label: dictionary.sizes[value] || value }))
-			: sizes.map(value => ({ value, label: dictionary.sizes[value] || value }))
+	const updatedStock = () => {
+		 if (id === 'pfs' && color === 'BLACK' && gender === 'GIRL') {
+			return sizes.slice(0, 2).map(value => ({ value, label: dictionary.sizes[value] || value }))
+		 }
+		 else if (id === 'pfs' && color === 'BLACK' && gender === 'BOY') {
+			return sizes.slice(0, 2).map(value => ({ value, label: dictionary.sizes[value] || value }))
+		 }
+		else {
+			return sizes.map(value => ({ value, label: dictionary.sizes[value] || value }))
+		}
+	}
 
 	const handleAddToCart = e => {
 		e.preventDefault()
@@ -112,7 +119,7 @@ const Product = ({
 									type='radio'
 									value={size}
 									onChange={setSize}
-									options={updatedStock}
+									options={updatedStock()}
 								/>
 							)}
 							<Columns.Column spread={6} display='flex'>
