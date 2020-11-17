@@ -9,7 +9,7 @@ const Product = ({ title, images, price }) => {
 	return (
 		<Box textAlign='center' marginBottom='2rem'>
 				<Badge isAttached textTransform='uppercase' padding='0.25rem 0.5rem'>
-					corra! best friday com frete grátis&nbsp;
+					corra! black november com frete grátis&nbsp;
 					<span role='img' aria-label='emojis'>
 						{' '}
 						🚚
